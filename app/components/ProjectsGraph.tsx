@@ -1,34 +1,25 @@
 import React from 'react';
-import { EmojiProps } from '@/emojis/emojis';
-import Emoji from './Emoji';
-
+import { EmojiProps } from '@/emojis/emojis'; // Ensure this path is correct
+import Emoji from './Emoji'; // Ensure this path is correct
 
 interface ProjectGraphProps {
-  associatedEmojis: string[];
+  associatedEmojis: string[]; // This might need adjustment if associatedEmojis should also use the number property
   emojis: EmojiProps[];
 }
 
 const ProjectGraph: React.FC<ProjectGraphProps> = ({ associatedEmojis, emojis }) => {
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-      {emojis.map((emojiObj, index) => {
+      {emojis.map((emojiObj) => {
+        // Check if the current emoji's identifier is in the list of associated emoji identifiers
         const isAssociated = associatedEmojis.includes(emojiObj.emoji);
+
         return (
-            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-            {emojis.map((emojiObj, index) => {
-              // Determine if the current emoji is associated with a project
-              const isAssociated = associatedEmojis.includes(emojiObj.emoji);
-      
-              // Render the Emoji component for each emoji
-              return (
-                <Emoji
-                  key={emojiObj.emoji} // Use emoji itself as key if unique; otherwise, consider another unique property
-                  emoji={emojiObj.emoji}
-                  isAssociated={isAssociated}
-                />
-              );
-            })}
-          </div>
+          <Emoji
+            key={emojiObj.number} // Assuming 'number' is unique across all emojis
+            emoji={emojiObj.emoji}
+            isAssociated={isAssociated}
+          />
         );
       })}
     </div>
