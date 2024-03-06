@@ -1,4 +1,3 @@
-import React from 'react';
 import { EmojiProps } from '@/emojis/emojis'; // Ensure this path is correct
 import Emoji from './Emoji'; // Ensure this path is correct
 
@@ -16,7 +15,7 @@ const ProjectGraph: React.FC<ProjectGraphProps> = ({ associatedEmojis, emojis })
   });
 
   return (
-    <div className='flex flex-wrap justify-center'>
+    <div className='flex gap-4 flex-wrap justify-center mx-1'>
       {sortedEmojis.map((emojiObj) => {
         const projectSlug = associatedEmojis[emojiObj.emoji];
         const isAssociated = !!projectSlug;

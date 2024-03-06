@@ -10,7 +10,7 @@ export default function Hero() {
                     <p className="text-lg md:text-xl text-gray-600">Bring your stories to life, scene by scene, and watch your movie unfold.</p>
                 </div>
                 <div className='flex flex-row gap-2 mt-4'>
-                    <Link target='_blank' href={"/info"} className='hover:bg-gray-300 rounded-full py-1 px-4 bg-yellow-200 font-semibold'>info</Link><Link target='_blank' href={"https://github.com/iamseeley/emojihack"} className='hover:bg-gray-300 rounded-full font-semibold py-1 px-4 bg-yellow-200'>source</Link>
+                    <Link target='_blank' href={"/info"} className='hover:bg-gray-300 rounded-lg py-1 px-4 bg-yellow-300 font-semibold'>info</Link><Link target='_blank' href={"https://github.com/iamseeley/emojihack"} className='hover:bg-gray-300 rounded-lg font-semibold py-1 px-4 bg-yellow-300'>source</Link>
                 </div>
             </div>
         </>

@@ -2,13 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  
-}
-
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
 }
+
+
