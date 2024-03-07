@@ -8,7 +8,7 @@ type Metadata = {
   description?: string;
   origin?: string;
   source: string;
-  tech?: string;
+  tech?: any;
 };
 
 function parseFrontmatter(fileContent: string) {
@@ -22,12 +22,19 @@ function parseFrontmatter(fileContent: string) {
   frontMatterLines.forEach((line) => {
     let [key, ...valueArr] = line.split(': ');
     let value = valueArr.join(': ').trim();
+
+    
     value = value.replace(/^['"](.*)['"]$/, '$1'); // Remove quotes
-    metadata[key.trim() as keyof Metadata] = value;
-    });
-  
-    return { metadata: metadata as Metadata, content };
+    if (key.trim() === 'tech') {
+      metadata[key.trim() as keyof Metadata] = value.split(", ").map(item => item.trim());
+  } else {
+      metadata[key.trim() as keyof Metadata] = value;
   }
+  });
+
+  return { metadata: metadata as Metadata, content };
+}
+
   
 
 

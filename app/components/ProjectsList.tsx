@@ -18,7 +18,7 @@ interface ProjectListProps {
   export const ProjectList: React.FC<ProjectListProps> = ({ allProjects }) => {
     
     return (
-      <ul className="flex flex-col gap-2 mx-4">
+      <ul className="flex flex-col gap-2  mx-7">
         {allProjects
         .sort((a, b) => {
           if (
