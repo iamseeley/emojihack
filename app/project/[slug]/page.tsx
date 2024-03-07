@@ -35,9 +35,9 @@ export default function Project({ params }) {
             </p>
             <h3 className="text-2xl font-semibold mt-6 mb-4">Tech</h3>
             {project.metadata.tech && (
-            <ul>
+            <ul className="flex flex-row gap-2">
                 {project.metadata.tech.map((techItem, index) => (
-                <li key={index}>{techItem}</li>
+                <li className="px-2 py-1 inline-flex bg-gray-100 text-sm font-medium" key={index}>{techItem}</li>
                 ))}
             </ul>
             )}
