@@ -15,7 +15,7 @@ const ProjectGraph: React.FC<ProjectGraphProps> = ({ associatedEmojis, emojis })
   });
 
   return (
-    <div className='flex gap-4 flex-wrap justify-center mx-1'>
+    <div className='flex gap-4 flex-wrap justify-center mx-[10px]'>
       {sortedEmojis.map((emojiObj) => {
         const projectSlug = associatedEmojis[emojiObj.emoji];
         const isAssociated = !!projectSlug;

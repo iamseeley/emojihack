@@ -9,12 +9,14 @@ interface ProjectSpeedProps {
     const rotationDegree = Math.min(mph, 200) / 200 * 180 - 90;
   
     return (
-      <div className="bg-white p-6 w-1/2 rounded-lg border shadow-md flex flex-col gap-4 items-center">
-        <div className="relative w-32 h-16">
+      <div className="bg-black p-6 w-1/2 rounded-3xl shadow-md flex flex-col gap-4 items-center">
+        <div className="relative w-28 h-14 ">
           {/* Speedometer ring */}
           
             {/* Speedometer arc */}
-            <div className="absolute rounded-t-full inset-0 bg-gradient-to-r from-green-400 via-yellow-300 to-red-600" />
+            
+            <div className=" absolute rounded-t-full inset-0 bg-gradient-to-r from-green-400 via-yellow-300 to-red-600" />
+           
             {/* Needle */}
             <div 
               className="w-0.5 h-16 bg-black absolute bottom-0 left-1/2 z-10 "
@@ -27,9 +29,9 @@ interface ProjectSpeedProps {
             </div>
           </div>
           {/* Center Text */}
-          <div className="">
+          <div className=" text-white">
             <div className="text-xl font-bold text-center">{mph} MPH</div>
-            <div className="text-sm font-medium text-gray-600 text-center">
+            <div className="text-sm font-medium text-gray-400 text-center">
               {projectsPerWeek} projects/week
             </div>
           </div>

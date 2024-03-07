@@ -6,12 +6,12 @@ import { ProjectList } from './ProjectsList';
 import ProjectsNav from './ProjectsNav';
 
 
-const ProjectsDisplay = ({ associatedEmojis, emojiToProjectSlug, emojis, allProjects}) => {
+const ProjectsDisplay = ({ emojiToProjectSlug, emojis, allProjects, projectUrl}) => {
   const [currentView, setCurrentView] = useState('graph'); // 'graph' or 'list'
 
   return (
     <div>
-      <ProjectsNav onNavChange={setCurrentView} />
+      <ProjectsNav currentView={currentView} onNavChange={setCurrentView} />
       {currentView === 'graph' && <ProjectGraph associatedEmojis={emojiToProjectSlug} emojis={emojis} />}
       {currentView === 'list' && <ProjectList allProjects={allProjects} />}
     </div>

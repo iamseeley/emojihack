@@ -1,13 +1,27 @@
 
 
-const ProjectsNav = ({ onNavChange }) => {
+const ProjectsNav = ({ onNavChange, currentView }) => {
   return (
-    <div className="flex gap-2 mb-4 mx-4">
-      <button onClick={() => onNavChange('graph')} className="text-sm rounded-full font-semibold  px-4 py-1 bg-gray-200 text-black ">
-        by emoji
+    <div className="flex  mb-4 mx-4">
+      <button
+        onClick={() => onNavChange('graph')}
+        className={`text-sm font-medium px-4 py-1 ${
+          currentView === 'graph'
+            ? 'bg-gray-200 text-black font-semibold rounded-full'
+            : 'text-black hover:opacity-100 opacity-60'
+        }`}
+      >
+        emoji
       </button>
-      <button onClick={() => onNavChange('list')} className="text-sm rounded-full font-semibold  px-4 py-1 bg-gray-200 text-black">
-        by title
+      <button
+        onClick={() => onNavChange('list')}
+        className={`text-sm font-medium px-4 py-1 ${
+          currentView === 'list'
+            ? 'bg-gray-200 text-black font-semibold rounded-full'
+            : 'text-black hover:opacity-100 opacity-60'
+        }`}
+      >
+        title
       </button>
     </div>
   );
