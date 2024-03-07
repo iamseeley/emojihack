@@ -6,6 +6,9 @@ type Metadata = {
   emoji: string;
   publishedAt: string;
   description?: string;
+  origin?: string;
+  source: string;
+  tech?: string;
 };
 
 function parseFrontmatter(fileContent: string) {
@@ -21,10 +24,12 @@ function parseFrontmatter(fileContent: string) {
     let value = valueArr.join(': ').trim();
     value = value.replace(/^['"](.*)['"]$/, '$1'); // Remove quotes
     metadata[key.trim() as keyof Metadata] = value;
-  });
+    });
+  
+    return { metadata: metadata as Metadata, content };
+  }
+  
 
-  return { metadata: metadata as Metadata, content };
-}
 
 function getMDXFiles(dir) {
   return fs.readdirSync(dir).filter((file) => path.extname(file) === '.mdx');
