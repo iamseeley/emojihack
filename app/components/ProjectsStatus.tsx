@@ -1,4 +1,5 @@
 import Link from "next/link";
+import emojihack from '../../emojihack.json'
 
 interface ProjectStatusProps {
     totalEmojisCount: number;
@@ -14,10 +15,10 @@ interface ProjectStatusProps {
   
     return (
       <div className="bg-blue-400 p-6 rounded-3xl shadow-md w-1/2 flex flex-col justify-between">
-        <p className="font-semibold text-sm text-white">
-          <Link href={'https://tseeley.com'} className="underline" target="_blank">Thomas</Link> has launched {associatedEmojisCount} emoji projects out of {totalEmojisCount} emojis.
+        <p className="font-semibold text-sm md:text-lg text-white">
+          <Link href={'https://tseeley.com'} className="underline" target="_blank">{emojihack.preferredName}</Link> has launched {associatedEmojisCount} emoji projects out of {totalEmojisCount} emojis.
         </p>
-        <div className="bg-gray-200  rounded-full h-2.5">
+        <div className="bg-white  rounded-full h-2.5">
           <div 
             className="bg-green-400 rounded-l-full h-2.5" 
             style={{ width: `${progressPercentage}%` }}

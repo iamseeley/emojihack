@@ -20,9 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.className}>
-      <body className="flex flex-col antialiased " >
+      <body className="antialiased " >
         <Header />
-        <main className="flex flex-col max-w-3xl mx-auto justify-center min-h-screen mb-10 px-4 py-10 md:py-20">
+        <main className="max-w-3xl mx-auto justify-center min-h-screen mb-10 px-4 py-10 md:py-20">
           {children}
         </main>
         <Footer />

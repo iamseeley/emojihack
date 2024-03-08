@@ -1,12 +1,12 @@
 import Link from "next/link"
-
+import emojihack from '../../emojihack.json'
 
 export default function Hero() {
     return (
         <>
             <div className="flex flex-col  text-center items-center">
                 <div className="flex flex-col gap-2 max-w-lg">
-                    <p className="text-lg md:text-xl text-gray-600">Instead of getting an internship dudes will</p>
+                    <p className="text-lg md:text-xl text-gray-600">Instead of getting an internship {emojihack.____will} will</p>
                     <h4 className='text-4xl md:text-5xl font-bold'>Build a project for every emoji</h4>
                     
                 </div>

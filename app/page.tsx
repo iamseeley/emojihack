@@ -35,7 +35,7 @@ export default function Home() {
           <Hero />
         </section>
         <section className="flex flex-col gap-10">
-          <div className="flex flex-row gap-4 mx-4">
+          <div className="flex flex-row gap-4 mx-2">
             <ProjectStatus totalEmojisCount={totalEmojisCount} associatedEmojisCount={associatedEmojisCount} />
             <ProjectSpeed projectsPerWeek={projectsPerWeek} />  
           </div>

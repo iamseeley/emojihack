@@ -2,10 +2,41 @@ import { Mdx } from "@/app/components/Mdx";
 import { getProjects } from "@/app/utils/project"
 import { notFound } from "next/navigation"
 import Link from "next/link";
+import { unstable_noStore as noStore } from 'next/cache';
 
 
-
-
+function formatDate(date: string) {
+    noStore();
+    let currentDate = new Date();
+    if (!date.includes('T')) {
+      date = `${date}T00:00:00`;
+    }
+    let targetDate = new Date(date);
+  
+    let yearsAgo = currentDate.getFullYear() - targetDate.getFullYear();
+    let monthsAgo = currentDate.getMonth() - targetDate.getMonth();
+    let daysAgo = currentDate.getDate() - targetDate.getDate();
+  
+    let formattedDate = '';
+  
+    if (yearsAgo > 0) {
+      formattedDate = `${yearsAgo}y ago`;
+    } else if (monthsAgo > 0) {
+      formattedDate = `${monthsAgo}mo ago`;
+    } else if (daysAgo > 0) {
+      formattedDate = `${daysAgo}d ago`;
+    } else {
+      formattedDate = 'Today';
+    }
+  
+    let fullDate = targetDate.toLocaleString('en-us', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+    });
+  
+    return `${fullDate} (${formattedDate})`;
+  }
 
 
 
@@ -22,7 +53,7 @@ export default function Project({ params }) {
             <div className="mb-8">
                 <h2 className="flex gap-2 font-semibold text-3xl mb-2"><span>{project.metadata.emoji}</span>{project.metadata.title}</h2>
                 <div className="flex flex-row gap-4 items-center">
-                    <time>{project.metadata.publishedAt}</time>
+                    <time>{formatDate(project.metadata.publishedAt)}</time>
                     <Link className="px-2 h-7 hover:opacity-80  py-1 bg-blue-50 text-blue-600 rounded-lg shadow-sm font-medium inline-flex items-center" target="_blank" rel="noreferrer" href={`${project.metadata.source}`}>source <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" ><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></Link>
                 </div>
             </div>

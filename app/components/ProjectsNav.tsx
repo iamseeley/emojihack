@@ -2,12 +2,12 @@
 
 const ProjectsNav = ({ onNavChange, currentView }) => {
   return (
-    <div className="flex  mb-4 mx-4">
+    <div className="flex  mb-4 mx-2">
       <button
         onClick={() => onNavChange('graph')}
         className={`text-sm font-medium px-4 py-1 ${
           currentView === 'graph'
-            ? 'bg-gray-200 text-black font-semibold rounded-full'
+            ? 'bg-gray-100 text-black font-semibold rounded-full'
             : 'text-black hover:opacity-100 opacity-60'
         }`}
       >
@@ -17,7 +17,7 @@ const ProjectsNav = ({ onNavChange, currentView }) => {
         onClick={() => onNavChange('list')}
         className={`text-sm font-medium px-4 py-1 ${
           currentView === 'list'
-            ? 'bg-gray-200 text-black font-semibold rounded-full'
+            ? 'bg-gray-100 text-black font-semibold rounded-full'
             : 'text-black hover:opacity-100 opacity-60'
         }`}
       >
