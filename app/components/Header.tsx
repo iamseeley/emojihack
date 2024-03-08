@@ -22,8 +22,8 @@ export default function Header() {
     return (
         <header className="border-b py-2 items-center sticky top-0 bg-white z-50 bg-opacity-95 ">
             <div className="flex flex-row justify-between max-w-3xl mx-auto px-4">
-                <div className="flex flex-row gap-2 items-center max-w-5xl ">
-                    <a href="/" className="hover:opacity-80 text-2xl ">{currentEmoji}</a>
+                <div className="flex flex-row gap-1 items-center max-w-5xl ">
+                    <a href="/" className="hover:opacity-80 text-2xl w-8 h-8">{currentEmoji}</a>
                     <a href="/" className="hover:opacity-80 text-xl font-semibold">Emoji Hack</a>
                 </div>
                 <div className="flex flex-row gap-4 items-center">
