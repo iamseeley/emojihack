@@ -4,7 +4,7 @@ import Link from "next/link";
 interface Project {
   metadata: {
     publishedAt: string;
-    emoji: string; // Assuming there's an emoji field within metadata
+    emoji: string;
     title: string;
   };
   slug: string

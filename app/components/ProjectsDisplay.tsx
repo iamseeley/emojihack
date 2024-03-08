@@ -12,7 +12,7 @@ const ProjectsDisplay = ({ emojiToProjectSlug, emojis, allProjects, projectUrl})
   return (
     <div>
       <ProjectsNav currentView={currentView} onNavChange={setCurrentView} />
-      {currentView === 'graph' && <ProjectGraph associatedEmojis={emojiToProjectSlug} emojis={emojis} />}
+      {currentView === 'graph' && <ProjectGraph allProjects={allProjects} associatedEmojis={emojiToProjectSlug} emojis={emojis} />}
       {currentView === 'list' && <ProjectList allProjects={allProjects} />}
     </div>
   );
