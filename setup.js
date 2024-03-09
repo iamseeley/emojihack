@@ -31,11 +31,10 @@ source: https://github.com/iamseeley/emojihack
 Your project content starts here...`;
 
 
-const homePagePath = path.join(__dirname, 'app', 'page.tsx');
+
 const homeContent = `import emojis from '../emojis/emojis.json'
 import { getProjects } from "./utils/project";
 import ProjectStatus from "./components/ProjectsStatus";
-import Hero from "./components/Hero";
 import { ProjectSpeed } from "./components/ProjectSpeed";
 import { parseISO, differenceInCalendarWeeks, startOfWeek } from 'date-fns';
 import ProjectsDisplay from "./components/ProjectsDisplay";
@@ -75,6 +74,8 @@ export default function Home() {
 }
 `;
 
+const homePagePath = path.join(__dirname, 'app', 'page.tsx');
+const heroComponentPath = path.join(__dirname, 'app', 'components', 'Hero.tsx');
 const contentDir = path.join(__dirname, 'content');
 const infoDir = path.join(__dirname, 'app', 'info');
 const emojihackJsonPath = path.join(__dirname, 'emojihack.json');
@@ -91,7 +92,7 @@ async function deleteFolderRecursive(directory) {
         } 
         await fs.unlink(filePath);
       }
-      await fs.rmdir(directory); // This line ensures the directory itself is removed
+      await fs.rmdir(directory);
     } catch (error) {
       if (error.code === 'ENOENT') {
         console.log(`The directory ${directory} does not exist.`);
@@ -110,6 +111,8 @@ async function setup() {
     // Delete existing projects and content
     await deleteFolderRecursive(contentDir);
     await deleteFolderRecursive(infoDir);
+
+    await fs.unlink(heroComponentPath).catch(error => console.log(`Failed to delete Hero component: ${error.message}`));
 
     await fs.mkdir(contentDir, { recursive: true });
 
