@@ -12,14 +12,15 @@ if (process.env.IS_TEMPLATE === 'false') {
 
 const defaultEmojiHackJson = {
     "preferredName": "Thomas",
+    "fullName": "Thomas Seeley",
     "githubProfile": "https://github.com/iamseeley",
     "twitterProfile": "https://twitter.com/iamseeley",
     "personalWebsite": "https://tseeley.com"
 };
 
 const baseMDXContent = `---
-title: 'Your Project Title'
-emoji: '😀'
+title: Your Project Title
+emoji: 😀
 publishedAt: YYYY-MM-DD
 description: A short description of your project.
 origin: idea or emoji
@@ -29,18 +30,50 @@ source: https://github.com/iamseeley/emojihack
 
 Your project content starts here...`;
 
-const heroComponentPath = path.join(__dirname, 'app', 'components', 'Hero.tsx');
-const baseHeroContent = `export default function Hero() {
+
+const homePagePath = path.join(__dirname, 'app', 'page.tsx');
+const homeContent = `import emojis from '../emojis/emojis.json'
+import { getProjects } from "./utils/project";
+import ProjectStatus from "./components/ProjectsStatus";
+import Hero from "./components/Hero";
+import { ProjectSpeed } from "./components/ProjectSpeed";
+import { parseISO, differenceInCalendarWeeks, startOfWeek } from 'date-fns';
+import ProjectsDisplay from "./components/ProjectsDisplay";
+
+
+
+
+
+export default function Home() {
+  const allProjects = getProjects();
+  // const associatedEmojisSet = new Set(allProjects.map(project => project.metadata.emoji));
+  const emojiToProjectSlug = allProjects.reduce((acc, project) => {
+    acc[project.metadata.emoji] = project.slug;
+    return acc;
+  }, {});
+  // const associatedEmojis = Array.from(associatedEmojisSet);
+  const totalEmojisCount = emojis.length;
+  const associatedEmojisCount = Object.keys(emojiToProjectSlug).length;
+  const startDate = startOfWeek(parseISO('2024-03-04'), { weekStartsOn: 1 }); // weekStartsOn: 1 for Monday
+  const currentWeekStart = startOfWeek(new Date(), { weekStartsOn: 1 });
+  const totalWeeks = differenceInCalendarWeeks(currentWeekStart, startDate) + 1; // +1 to include the current week
+  const projectsPerWeek = associatedEmojisCount / totalWeeks;
+
   return (
-      <>
-          <div className="flex flex-col text-center items-center">
-              <div className="flex flex-col gap-2 max-w-lg"> 
-                  <h2 className='text-4xl md:text-5xl font-bold'>Build a project for every emoji</h2>
-              </div>
+    <>
+      <div className="flex flex-col gap-20">
+        <section className="flex flex-col gap-10">
+          <div className="flex flex-row gap-4 mx-2">
+            <ProjectStatus totalEmojisCount={totalEmojisCount} associatedEmojisCount={associatedEmojisCount} />
+            <ProjectSpeed projectsPerWeek={projectsPerWeek} />  
           </div>
-      </>
-  ) 
-}`;
+          <ProjectsDisplay projectUrl={emojiToProjectSlug} emojiToProjectSlug={emojiToProjectSlug} emojis={emojis} allProjects={allProjects} />
+        </section>
+      </div>
+    </>
+  );
+}
+`;
 
 const contentDir = path.join(__dirname, 'content');
 const infoDir = path.join(__dirname, 'app', 'info');
@@ -48,26 +81,25 @@ const emojihackJsonPath = path.join(__dirname, 'emojihack.json');
 const baseMDXPath = path.join(contentDir, 'your-first-project.mdx');
 
 async function deleteFolderRecursive(directory) {
-  try {
-    const files = await fs.readdir(directory);
-    for (const file of files) {
-      const filePath = path.join(directory, file);
-      const stat = await fs.lstat(filePath);
-      if (stat.isDirectory()) {
-        await deleteFolderRecursive(filePath);
-        await fs.rmdir(filePath);
-      } else {
+    try {
+      const files = await fs.readdir(directory);
+      for (const file of files) {
+        const filePath = path.join(directory, file);
+        const stat = await fs.lstat(filePath);
+        if (stat.isDirectory()) {
+          await deleteFolderRecursive(filePath);
+        } 
         await fs.unlink(filePath);
       }
-    }
-  } catch (error) {
-    if (error.code === 'ENOENT') {
-      console.log(`The directory ${directory} does not exist.`);
-    } else {
-      throw error;
+      await fs.rmdir(directory); // This line ensures the directory itself is removed
+    } catch (error) {
+      if (error.code === 'ENOENT') {
+        console.log(`The directory ${directory} does not exist.`);
+      } else {
+        throw error;
+      }
     }
   }
-}
 
 async function createEmojiHackJson() {
   await fs.writeFile(emojihackJsonPath, JSON.stringify(defaultEmojiHackJson, null, 2), 'utf8');
@@ -79,7 +111,6 @@ async function setup() {
     await deleteFolderRecursive(contentDir);
     await deleteFolderRecursive(infoDir);
 
-    // Create new directories   
     await fs.mkdir(contentDir, { recursive: true });
 
     // Create a new emojihack.json with default data
@@ -88,7 +119,7 @@ async function setup() {
     // Create a base MDX file in the content directory
     await fs.writeFile(baseMDXPath, baseMDXContent, 'utf8');
 
-    await fs.writeFile(heroComponentPath, baseHeroContent, 'utf8');
+    await fs.writeFile(homePagePath, homeContent, 'utf8');
 
     console.log("Setup completed successfully.");
   } catch (error) {
