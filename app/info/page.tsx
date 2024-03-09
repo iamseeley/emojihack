@@ -19,8 +19,8 @@ export default function Info() {
                 <h2 className="flex gap-2 font-semibold text-3xl mb-2">What&apos;s Emoji Hack?</h2>
             </div>
             <article className="prose">
-            <p>Emoji Hack is a collection of software and web dev projects for every single emoji.</p>
-            <p>Each project was either inspired by an emoji, or I had an idea and picked an emoji for it.</p>
+            <p>Emoji Hack is a challenge to create a software or web dev project for every single emoji.</p>
+            <p>Each project is either inspired by an emoji, there was an idea that came first and an emoji was picked for it.</p>
 
 
             <h3 className="text-2xl font-semibold ">Why do this?</h3>
