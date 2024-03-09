@@ -1,4 +1,3 @@
-// setup.js
 const fs = require('fs').promises;
 const path = require('path');
 const dotenv = require('dotenv');
@@ -29,6 +28,19 @@ source: https://github.com/iamseeley/emojihack
 ---
 
 Your project content starts here...`;
+
+const heroComponentPath = path.join(__dirname, 'app', 'components', 'Hero.tsx');
+const baseHeroContent = `export default function Hero() {
+  return (
+      <>
+          <div className="flex flex-col text-center items-center">
+              <div className="flex flex-col gap-2 max-w-lg"> 
+                  <h2 className='text-4xl md:text-5xl font-bold'>Build a project for every emoji</h2>
+              </div>
+          </div>
+      </>
+  ) 
+}`;
 
 const contentDir = path.join(__dirname, 'content');
 const infoDir = path.join(__dirname, 'app', 'info');
@@ -67,7 +79,7 @@ async function setup() {
     await deleteFolderRecursive(contentDir);
     await deleteFolderRecursive(infoDir);
 
-    // Create new directories
+    // Create new directories   
     await fs.mkdir(contentDir, { recursive: true });
 
     // Create a new emojihack.json with default data
@@ -75,6 +87,8 @@ async function setup() {
 
     // Create a base MDX file in the content directory
     await fs.writeFile(baseMDXPath, baseMDXContent, 'utf8');
+
+    await fs.writeFile(heroComponentPath, baseHeroContent, 'utf8');
 
     console.log("Setup completed successfully.");
   } catch (error) {
