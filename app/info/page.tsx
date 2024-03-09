@@ -16,7 +16,7 @@ export default function Info() {
     return (
         <section>
             <div className="mb-8">
-                <h2 className="flex gap-2 font-semibold text-3xl mb-2">What's Emoji Hack?</h2>
+                <h2 className="flex gap-2 font-semibold text-3xl mb-2">What&apos;s Emoji Hack?</h2>
             </div>
             <article className="prose">
             <p>Emoji Hack is a collection of software and web dev projects for every single emoji.</p>
@@ -26,10 +26,10 @@ export default function Info() {
             <h3 className="text-2xl font-semibold ">Why do this?</h3>
             <p>Well, I did it for a few reasons.</p>
             <ol>
-                <li>It's very fun.</li>
-                <li>It's a commitment to creation.</li>
-                <li>It's a challenge.</li>
-                <li>It's so much fun.</li>
+                <li>It&apos;s very fun.</li>
+                <li>It&apos;s a commitment to creation.</li>
+                <li>It&apos;s a challenge.</li>
+                <li>It&apos;s so much fun.</li>
             </ol>
             <p>I also hope people see this and it inspires them to build a bunch of stuff.</p>
             <p><em>You can just make things.</em></p>
@@ -49,7 +49,7 @@ export default function Info() {
                 <span className="px-2 py-1 inline-flex bg-gray-100 text-sm font-medium">browser extensions</span>
             </div>
 
-            <p>I'm going to try to keep the max time I spend on individual projects to one week.</p>
+            <p>I&apos;m going to try to keep the max time I spend on individual projects to one week.</p>
 
             <p>Big shoutout to <Link target="_blank" rel="noreferrer noopener" href="https://twitter.com/leeerob">@leeerob</Link>. I adapted some of the code from his personal site to return my mdx file data (without using something like contentlayer) and format my project dates.</p>
             
