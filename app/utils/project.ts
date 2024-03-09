@@ -9,6 +9,7 @@ type Metadata = {
   origin?: string;
   source: string;
   tech?: any;
+  image?: string;
 };
 
 function parseFrontmatter(fileContent: string) {

@@ -3,7 +3,50 @@ import { getProjects } from "@/app/utils/project"
 import { notFound } from "next/navigation"
 import Link from "next/link";
 import { unstable_noStore as noStore } from 'next/cache';
+import type { Metadata } from "next";
 
+
+export async function generateMetadata({
+  params,
+}): Promise<Metadata | undefined> {
+  let project = getProjects().find((project) => project.slug === params.slug);
+  if (!project) {
+    return;
+  }
+
+  let {
+    title,
+    publishedAt: publishedTime,
+    description: description,
+    image,
+  } = project.metadata;
+  let ogImage = image
+    ? `https://localhost:3000${image}`
+    : `https://localhost:3000/og?title=${title}`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: 'article',
+      publishedTime,
+      url: `https://localhost:3000/${project.slug}`,
+      images: [
+        {
+          url: ogImage,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [ogImage],
+    },
+  };
+}
 
 function formatDate(date: string) {
     noStore();

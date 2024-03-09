@@ -1,5 +1,15 @@
 import Link from "next/link"
+import type { Metadata } from "next"
 
+export const metadata: Metadata = {
+    title: 'Info',
+    description: 'Emoji Hack is a collection of software and web dev projects for every single emoji',
+    openGraph: {
+      title: 'Info',
+      description: 'Emoji Hack is a collection of software and web dev projects for every single emoji',
+      url: 'https://emojihack.com/info',
+    },  
+  };
 
 
 export default function Info() {

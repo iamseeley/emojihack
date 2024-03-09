@@ -10,14 +10,6 @@ if (process.env.IS_TEMPLATE === 'false') {
   process.exit(0);
 }
 
-const defaultEmojiHackJson = {
-    "preferredName": "Thomas",
-    "fullName": "Thomas Seeley",
-    "githubProfile": "https://github.com/iamseeley",
-    "twitterProfile": "https://twitter.com/iamseeley",
-    "personalWebsite": "https://tseeley.com"
-};
-
 const baseMDXContent = `---
 title: Your Project Title
 emoji: 😀
@@ -111,7 +103,6 @@ async function setup() {
     await fs.unlink(heroComponentPath).catch(error => console.log(`Failed to delete Hero component: ${error.message}`));
 
     await fs.mkdir(contentDir, { recursive: true });
-
 
     await fs.writeFile(baseMDXPath, baseMDXContent, 'utf8');
 
