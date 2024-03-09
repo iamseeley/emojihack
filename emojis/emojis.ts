@@ -5,4 +5,5 @@ export interface EmojiProps {
     unicode?: string;
     name?: string;
     isAssociated?: boolean;
+    projectUrl?: string,
 }
