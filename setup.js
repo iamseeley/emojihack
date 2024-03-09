@@ -78,7 +78,6 @@ const homePagePath = path.join(__dirname, 'app', 'page.tsx');
 const heroComponentPath = path.join(__dirname, 'app', 'components', 'Hero.tsx');
 const contentDir = path.join(__dirname, 'content');
 const infoDir = path.join(__dirname, 'app', 'info');
-const emojihackJsonPath = path.join(__dirname, 'emojihack.json');
 const baseMDXPath = path.join(contentDir, 'your-first-project.mdx');
 
 async function deleteFolderRecursive(directory) {
@@ -102,13 +101,10 @@ async function deleteFolderRecursive(directory) {
     }
   }
 
-async function createEmojiHackJson() {
-  await fs.writeFile(emojihackJsonPath, JSON.stringify(defaultEmojiHackJson, null, 2), 'utf8');
-}
 
 async function setup() {
   try {
-    // Delete existing projects and content
+    
     await deleteFolderRecursive(contentDir);
     await deleteFolderRecursive(infoDir);
 
@@ -116,10 +112,7 @@ async function setup() {
 
     await fs.mkdir(contentDir, { recursive: true });
 
-    // Create a new emojihack.json with default data
-    await createEmojiHackJson();
 
-    // Create a base MDX file in the content directory
     await fs.writeFile(baseMDXPath, baseMDXContent, 'utf8');
 
     await fs.writeFile(homePagePath, homeContent, 'utf8');
