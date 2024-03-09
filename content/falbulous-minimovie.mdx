@@ -8,7 +8,27 @@ tech: fal.ai, Next.js, Tailwind CSS, TypeScript
 source: https://github.com/iamseeley/falbulous-minimovie
 ---
 
-About a week ago, I started this to play around with [fal.ai's](https://fal.ai) apis.
+About a week ago, I started this to play around with [fal.ai's](https://fal.ai) apis. 
+
+The goal was to create a storyboard editor that would be used to make mini movies. 
+
+Users input the key elements of their story (characters, setting, etc...) and a "scene" is generated.
+
+After generating a few scenes, the user can compile all of them into a mini movie and download it. 
+
+I realized quickly that there were a few problems with my idea. First, there was no consistency across the scenes. So, I set the seed for the images being fed to svd. This helped, but the videos were still all over the place.
+
+I added more controls to the scene editor like motion bucket id, conditioning augmentation, steps, and fps controls. These controls let users dial in the motion and quality of videos.
+
+Another problem I ran into was how the quality of the images generated really depended on the descriptiveness of the prompt and users just weren't going to take the time to submit a 200+ word detailed prompt.
+
+To improve the prompts I took the advice of [David](https://twitter.com/davidntompkins) and added a gpt-3.5 call with the user's scene input and a detailed system prompt.
+
+<details><summary>system prompt</summary>"You are a precise Image describer. You help filmmakers create storyboards for short stories. You respond by providing descriptions of single images that collectively tell a story. Your descriptions are precise and descriptive. Collectively they tell the story presented by the filmmaker. You provide between 7 and 10 image suggestions. Providing each on its own line. Each image is self-contained with location, providing all information in a single sentence. Always include location, always show, don't tell, always drive plot. Be quite literal, describe the scene in specifics. Your final scene should imply a dramatic hook or mystery, or the major plot point."</details>
+
+Adding this has improved the image quality / consistency, which in turn has improved the videos. Thanks David!
+
+Not sure where this project is headed, but I'll keep tinkering with it.
 
 
 

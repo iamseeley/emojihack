@@ -42,6 +42,17 @@ function formatDate(date: string) {
 
 export default function Project({ params }) {
     const project = getProjects().find((project) => project.slug === params.slug)
+    const allProjects = getProjects().map(project => ({
+      ...project,
+      publishedAtDate: new Date(project.metadata.publishedAt)
+    })).sort((a, b) => a.publishedAtDate.getTime() - b.publishedAtDate.getTime());
+
+    const currentProjectIndex = allProjects.findIndex(project => project.slug === params.slug);
+    const prevProject = currentProjectIndex > 0 ? allProjects[currentProjectIndex - 1] : null;
+    const nextProject = currentProjectIndex < allProjects.length - 1 ? allProjects[currentProjectIndex + 1] : null;
+
+    const totalProjects = allProjects.length;
+
 
     if (!project)  {
         notFound();
@@ -74,6 +85,39 @@ export default function Project({ params }) {
             )}
             <h3 className="text-2xl font-semibold mt-6 mb-4">Notes</h3>
             <article className="prose prose-h3:text-2xl prose-h3:font-semibold"><Mdx source={project.content} /></article>
+
+
+            <div className="mt-8 flex flex-col gap-2 justify-center items-center">
+                {prevProject && (
+                    <Link href={`/project/${prevProject.slug}`} className="text-blue-600 font-medium hover:underline flex items-center gap-1 group">
+                        <span className="group-hover:translate-x-2 transform ease-in-out"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 8L2 12L6 16"/><path d="M2 12H22"/></svg></span> Prev: {prevProject.metadata.title}
+                    </Link>
+                )}
+                {nextProject && (
+                    <Link href={`/project/${nextProject.slug}`} className="text-blue-600 font-medium hover:underline flex items-center gap-1 group">
+                        Next: {nextProject.metadata.title} <span className="group-hover:translate-x-2 transform ease-in-out"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg></span>
+                    </Link>
+                )}
+            </div>
+
+            {/* <div className="flex items-center justify-center my-8">
+              <Link href={`/project/${prevProject?.slug}`} passHref>
+                <span className={`mr-4 ${!prevProject ? 'hidden' : ''}`}>
+                  <button className="p-2 border rounded-l">{"<"}</button>
+                </span>
+              </Link>
+            
+              <div className="flex items-center justify-center">
+                <span className="p-2 border-t border-b">
+                  {currentProjectIndex + 1} of {totalProjects}
+                </span>
+              </div>
+              <Link href={`/project/${nextProject?.slug}`} passHref>
+                <span className={`ml-4 ${!nextProject ? 'hidden' : ''}`}>
+                  <button className="p-2 border rounded-r">{">"}</button>
+                </span>
+              </Link>
+            </div> */}
 
         </section>
     )

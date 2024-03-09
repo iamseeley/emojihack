@@ -1,8 +1,8 @@
-import { EmojiProps } from '@/emojis/emojis'; // Ensure this path is correct
-import Emoji from './Emoji'; // Ensure this path is correct
+import { EmojiProps } from '@/emojis/emojis'; 
+import Emoji from './Emoji'; 
 
 interface ProjectGraphProps {
-  associatedEmojis: { [key: string]: string }; // This might need adjustment if associatedEmojis should also use the number property
+  associatedEmojis: { [key: string]: string };
   emojis: EmojiProps[];
   allProjects: [];
 }
@@ -15,7 +15,7 @@ const ProjectGraph = ({ associatedEmojis, emojis, allProjects }) => {
     return {
       ...emoji,
       isAssociated: !!project,
-      publishedAt: project ? new Date(project.metadata.publishedAt) : new Date(0) // Use a default old date for non-associated
+      publishedAt: project ? new Date(project.metadata.publishedAt) : new Date(0) 
     };
   });
 

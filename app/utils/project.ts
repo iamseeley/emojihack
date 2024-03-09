@@ -23,8 +23,6 @@ function parseFrontmatter(fileContent: string) {
     let [key, ...valueArr] = line.split(': ');
     let value = valueArr.join(': ').trim();
 
-    
-    value = value.replace(/^['"](.*)['"]$/, '$1'); // Remove quotes
     if (key.trim() === 'tech') {
       metadata[key.trim() as keyof Metadata] = value.split(", ").map(item => item.trim());
   } else {
@@ -36,7 +34,6 @@ function parseFrontmatter(fileContent: string) {
 }
 
   
-
 
 function getMDXFiles(dir) {
   return fs.readdirSync(dir).filter((file) => path.extname(file) === '.mdx');
