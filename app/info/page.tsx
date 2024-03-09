@@ -50,12 +50,12 @@ export default function Info() {
             </div>
 
             <p>I&apos;m going to try to keep the max time I spend on individual projects to one week.</p>
-
-            <p>Big shoutout to <Link target="_blank" rel="noreferrer noopener" href="https://twitter.com/leeerob">@leeerob</Link>. I adapted some of the code from his personal site to return my mdx file data (without using something like contentlayer) and format my project dates.</p>
             
             <p>If you would like to join in the fun go to the <Link target="_blank" rel="noreferrer noopener" href={'https://github.com/iamseeley/emojihack'}>source</Link> and follow the instructions to clone emoji hack and remove my project data. Then you can start adding your own projects!</p>
 
             <p>Also, join the <Link target="_blank" rel="noreferrer noopener" href={''}>discord</Link>!</p>
+
+            <p>Big shoutout to <Link target="_blank" rel="noreferrer noopener" href="https://twitter.com/leeerob">@leeerob</Link>. I adapted some of the code from his personal site to return my mdx file data (without using something like contentlayer) and format my project dates.</p>
 
 
             <h3 className="text-2xl font-semibold ">Inspo</h3>
