@@ -2,7 +2,7 @@ import Link from "next/link"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-    title: 'Info',
+    title: 'Info ~ Emoji Hack',
     description: 'Emoji Hack is a collection of software and web dev projects for every single emoji',
     openGraph: {
       title: 'Info',
@@ -19,8 +19,9 @@ export default function Info() {
                 <h2 className="flex gap-2 font-semibold text-3xl mb-2">What&apos;s Emoji Hack?</h2>
             </div>
             <article className="prose">
-            <p>Emoji Hack is a challenge to create a software or web dev project for every single emoji.</p>
-            <p>Each project is either inspired by an emoji, there was an idea that came first and an emoji was picked for it.</p>
+            <p>Hi there, I'm Thomas. I started Emoji Hack as a challenge to create a software or web dev project for every single emoji.</p>
+            <p>I wanted to make lots of different things and keep track of them in a fun way, so I thought, why not use emojis? Emojis are fun right?</p>
+            <p>So, for every project there is an associated emoji. Sometimes an idea comes first, and then an emoji is chosen for it; other times, the emoji itself inspires the project.</p>
 
 
             <h3 className="text-2xl font-semibold ">Why do this?</h3>
@@ -28,7 +29,7 @@ export default function Info() {
             <ol>
                 <li>It&apos;s very fun.</li>
                 <li>It&apos;s a commitment to creation.</li>
-                <li>It&apos;s a challenge.</li>
+                <li>It&apos;s challenging.</li>
                 <li>It&apos;s so much fun.</li>
             </ol>
             <p>I also hope people see this and it inspires them to build a bunch of stuff.</p>
