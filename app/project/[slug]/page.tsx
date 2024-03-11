@@ -114,17 +114,14 @@ export default function Project({ params }) {
                     <Link className="px-2 h-7 hover:opacity-80  py-1 bg-blue-50 text-blue-600 rounded-lg shadow-sm font-medium inline-flex items-center" target="_blank" rel="noreferrer" href={`${project.metadata.source}`}>source <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" ><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></Link>
                 </div>
             </div>
-            <p className="font-medium mb-6">{project.metadata.description}</p>
-            <p className="my-4">What came first, the emoji or the idea?</p>
-            <div className="mt-4">
-  <span className={`inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium ${project.metadata.origin === 'emoji' ? 'bg-green-100 text-green-800' : 'bg-purple-100 text-purple-800'}`}>
-    <svg className="-ml-1 mr-1.5 h-2 w-2 ${project.metadata.origin === 'emoji' ? 'text-green-400' : 'text-purple-400'}" fill="currentColor" viewBox="0 0 8 8">
-      <circle cx="4" cy="4" r="3" />
-    </svg>
-    {project.metadata.origin}
-  </span>
-</div>
-
+            <p className="font-medium mb-6">{project.metadata.description} <span className={`ml-1 inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium ${project.metadata.origin === 'emoji' ? 'bg-green-100 text-green-800' : 'bg-purple-100 text-purple-800'}`}>
+                  <svg className="-ml-1 mr-1.5 h-2 w-2 ${project.metadata.origin === 'emoji' ? 'text-green-400' : 'text-purple-400'}" fill="currentColor" viewBox="0 0 8 8">
+                    <circle cx="4" cy="4" r="3" />
+                  </svg>
+                  {project.metadata.origin}
+                </span>
+            </p>
+        
             <h3 className="text-2xl font-semibold mt-6 mb-4">Tech</h3>
             {project.metadata.tech && (
             <ul className="flex flex-row gap-2">
