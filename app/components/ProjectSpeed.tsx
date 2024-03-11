@@ -1,6 +1,8 @@
 interface ProjectSpeedProps {
     projectsPerWeek: number;
   }
+
+  
   
   export const ProjectSpeed: React.FC<ProjectSpeedProps> = ({ projectsPerWeek }) => {
     // 25 MPH represents 1 project per week, and the max speed is 200 MPH.
@@ -32,7 +34,7 @@ interface ProjectSpeedProps {
           <div className=" text-white">
             <div className="text-xl font-bold text-center">{mph} MPH</div>
             <div className="text-sm font-medium text-gray-400 text-center">
-              {projectsPerWeek} projects/week
+              {projectsPerWeek} {projectsPerWeek === 1 ? "project" : "projects"}/week
             </div>
           </div>
         
