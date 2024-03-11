@@ -1,68 +1,129 @@
 import { ImageResponse } from 'next/og';
 import { NextRequest } from 'next/server';
 import emojis from '../../emojis/emojis.json';
+import { unstable_noStore as noStore } from 'next/cache';
+
+function formatDate(date: string) {
+  noStore();
+  let currentDate = new Date();
+  if (!date.includes('T')) {
+    date = `${date}T00:00:00`;
+  }
+  let targetDate = new Date(date);
+
+  let yearsAgo = currentDate.getFullYear() - targetDate.getFullYear();
+  let monthsAgo = currentDate.getMonth() - targetDate.getMonth();
+  let daysAgo = currentDate.getDate() - targetDate.getDate();
+
+  let formattedDate = '';
+
+  if (yearsAgo > 0) {
+    formattedDate = `${yearsAgo}y ago`;
+  } else if (monthsAgo > 0) {
+    formattedDate = `${monthsAgo}mo ago`;
+  } else if (daysAgo > 0) {
+    formattedDate = `${daysAgo}d ago`;
+  } else {
+    formattedDate = 'Today';
+  }
+
+  let fullDate = targetDate.toLocaleString('en-us', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
+
+  return `${fullDate} `;
+}
 
 export const runtime = 'edge';
 
-// Function to get 100 random emojis from the list
 function getRandomEmojis(emojiList, count) {
-  const shuffled = [...emojiList].sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, count).map(e => e.emoji).join('');
+  return Array.from({ length: count }, () => emojiList[Math.floor(Math.random() * emojiList.length)].emoji).join(' ');
 }
 
 export async function GET(req: NextRequest) {
   const { searchParams } = req.nextUrl;
   const projectTitle = searchParams.get('title');
-
-  // Get 100 random emojis
-  const randomEmojiBackground = getRandomEmojis(emojis, 1000);
+  const emoji = searchParams.get('emoji');
+  const name = searchParams.get('name');
+  const date = searchParams.get('date');
+  const formattedDate = formatDate(date);
+  const emojiRows = Array.from({ length: 4 }, () => getRandomEmojis(emojis, 5)).join('\n');
 
   return new ImageResponse(
     (
       <div
-        style={{
-          height: '100%',
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          background: 'white',
-        }}
-      >
-        <div
           style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            fontSize: '42px',
-            color: 'rgba(255, 255, 255, 0.5)',
-            lineHeight: '1',
-            whiteSpace: 'wrap',
-            overflow: 'hidden',
-            width: '100%',
+            backgroundColor: 'white',
+            backgroundSize: '150px 150px',
             height: '100%',
-            // zIndex: -1,
+            width: '100%',
+            display: 'flex',
+            textAlign: 'center',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            flexWrap: 'nowrap',
           }}
         >
-          {/* {randomEmojiBackground} */}
+          <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            justifyItems: 'center',
+            gap: '20px',
+          }} 
+          >
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              justifyItems: 'center',
+              gap: '20px',
+            }}
+          >
+        <div style={{
+          display: 'flex',
+          fontSize: '84px',
+        }}><span>{emoji}</span></div>
+        <div style={{
+          fontSize: '64px',
+        }}>
+          {projectTitle}
+        </div>
+        
+        </div>
+        <div style={{
+          fontSize: '34px',
+        }}>
+          {formattedDate}
         </div>
         <div
-          style={{
-            // zIndex: 1,
-            maxWidth: '80%',
-            textAlign: 'center',
-            fontSize: '100px',
-            color: 'black',
-          }}
+        style={{
+          marginTop: '40px',
+          fontSize: '34px',
+          backgroundColor: '#2563eb',
+          paddingTop: '10px',
+          paddingBottom: '10px',
+          paddingLeft: '30px',
+          paddingRight: '30px',
+          borderRadius: '20px',
+          color: 'white',
+        }}
         >
-          {projectTitle}
+          {name}
+          </div>
         </div>
       </div>
     ),
     {
       width: 1920,
       height: 1080,
+      emoji: 'twemoji',
     }
   );
 }

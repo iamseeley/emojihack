@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import emojihack from '../../emojihack.json'
 
 type Metadata = {
   title: string;
@@ -10,6 +11,7 @@ type Metadata = {
   source: string;
   tech?: any;
   image?: string;
+  name?: string;
 };
 
 function parseFrontmatter(fileContent: string) {

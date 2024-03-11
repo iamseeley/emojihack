@@ -4,6 +4,40 @@ import { notFound } from "next/navigation"
 import Link from "next/link";
 import { unstable_noStore as noStore } from 'next/cache';
 import type { Metadata } from "next";
+import emojihack from '../../../emojihack.json'
+
+function formatDate(date: string) {
+  noStore();
+  let currentDate = new Date();
+  if (!date.includes('T')) {
+    date = `${date}T00:00:00`;
+  }
+  let targetDate = new Date(date);
+
+  let yearsAgo = currentDate.getFullYear() - targetDate.getFullYear();
+  let monthsAgo = currentDate.getMonth() - targetDate.getMonth();
+  let daysAgo = currentDate.getDate() - targetDate.getDate();
+
+  let formattedDate = '';
+
+  if (yearsAgo > 0) {
+    formattedDate = `${yearsAgo}y ago`;
+  } else if (monthsAgo > 0) {
+    formattedDate = `${monthsAgo}mo ago`;
+  } else if (daysAgo > 0) {
+    formattedDate = `${daysAgo}d ago`;
+  } else {
+    formattedDate = 'Today';
+  }
+
+  let fullDate = targetDate.toLocaleString('en-us', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
+
+  return `${fullDate} (${formattedDate})`;
+}
 
 
 export async function generateMetadata({
@@ -13,16 +47,17 @@ export async function generateMetadata({
   if (!project) {
     return;
   }
-
+  let name = 'made by ' + emojihack.preferredName?.toLowerCase() ?? 'add name in emojihack.json';
   let {
     title,
+    emoji,
     publishedAt: publishedTime,
     description: description,
     image,
   } = project.metadata;
   let ogImage = image
     ? `https://localhost:3000${image}`
-    : `https://localhost:3000/og?title=${title}`;
+    : `https://localhost:3000/og?title=${title}&emoji=${(encodeURIComponent(emoji))}&name=${(encodeURIComponent(name))}&date=${(encodeURIComponent(publishedTime))}`;
 
   return {
     title,
@@ -48,38 +83,7 @@ export async function generateMetadata({
   };
 }
 
-function formatDate(date: string) {
-    noStore();
-    let currentDate = new Date();
-    if (!date.includes('T')) {
-      date = `${date}T00:00:00`;
-    }
-    let targetDate = new Date(date);
-  
-    let yearsAgo = currentDate.getFullYear() - targetDate.getFullYear();
-    let monthsAgo = currentDate.getMonth() - targetDate.getMonth();
-    let daysAgo = currentDate.getDate() - targetDate.getDate();
-  
-    let formattedDate = '';
-  
-    if (yearsAgo > 0) {
-      formattedDate = `${yearsAgo}y ago`;
-    } else if (monthsAgo > 0) {
-      formattedDate = `${monthsAgo}mo ago`;
-    } else if (daysAgo > 0) {
-      formattedDate = `${daysAgo}d ago`;
-    } else {
-      formattedDate = 'Today';
-    }
-  
-    let fullDate = targetDate.toLocaleString('en-us', {
-      month: 'long',
-      day: 'numeric',
-      year: 'numeric',
-    });
-  
-    return `${fullDate} (${formattedDate})`;
-  }
+
 
 
 

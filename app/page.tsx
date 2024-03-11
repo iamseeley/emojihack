@@ -3,7 +3,7 @@ import { getProjects } from "./utils/project";
 import ProjectStatus from "./components/ProjectsStatus";
 import Hero from "./components/Hero";
 import { ProjectSpeed } from "./components/ProjectSpeed";
-import { parseISO, differenceInCalendarWeeks, startOfWeek } from 'date-fns';
+import { parseISO, differenceInCalendarWeeks, startOfWeek, isWithinInterval } from 'date-fns';
 import ProjectsDisplay from "./components/ProjectsDisplay";
 
 
@@ -20,10 +20,23 @@ export default function Home() {
   // const associatedEmojis = Array.from(associatedEmojisSet);
   const totalEmojisCount = emojis.length;
   const associatedEmojisCount = Object.keys(emojiToProjectSlug).length;
-  const startDate = startOfWeek(parseISO('2024-03-04'), { weekStartsOn: 1 }); // weekStartsOn: 1 for Monday
-  const currentWeekStart = startOfWeek(new Date(), { weekStartsOn: 1 });
-  const totalWeeks = differenceInCalendarWeeks(currentWeekStart, startDate) + 1; // +1 to include the current week
-  const projectsPerWeek = associatedEmojisCount / totalWeeks;
+  // const startDate = startOfWeek(parseISO('2024-02-25'), { weekStartsOn: 1 }); // weekStartsOn: 1 for Monday
+  // const currentWeekStart = startOfWeek(new Date(), { weekStartsOn: 1 });
+  // const totalWeeks = differenceInCalendarWeeks(currentWeekStart, startDate) + 1; // +1 to include the current week
+  // const projectsPerWeek = associatedEmojisCount / totalWeeks;
+
+  const currentWeekStart = startOfWeek(new Date(), { weekStartsOn: 1 }); // weekStartsOn: 1 indicates Monday
+
+// Filter projects to find how many were published this week
+const projectsThisWeek = allProjects.filter(project => {
+  const projectDate = parseISO(project.metadata.publishedAt);
+  return isWithinInterval(projectDate, {
+    start: currentWeekStart,
+    end: new Date(), // Assuming you want to include projects up to the current date within the week
+  });
+});
+
+const projectsPerWeek = projectsThisWeek.length;
 
   return (
     <>
