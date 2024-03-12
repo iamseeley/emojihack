@@ -91,21 +91,22 @@ export async function GET(req: NextRequest) {
           fontSize: '84px',
         }}><span>{emoji}</span></div>
         <div style={{
-          fontSize: '64px',
+          fontSize: '84px',
+          fontWeight: 'bold',
         }}>
           {projectTitle}
         </div>
         
         </div>
         <div style={{
-          fontSize: '34px',
+          fontSize: '54px',
         }}>
           {formattedDate}
         </div>
         <div
         style={{
-          marginTop: '40px',
-          fontSize: '34px',
+          marginTop: '60px',
+          fontSize: '54px',
           backgroundColor: '#2563eb',
           paddingTop: '10px',
           paddingBottom: '10px',
