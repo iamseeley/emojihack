@@ -18,7 +18,6 @@ export async function GET(req: NextRequest) {
       <div
         style={{
             fontSize: 24,
-            background: 'black',
             width: '100%',
             height: '100%',
             display: 'flex',
