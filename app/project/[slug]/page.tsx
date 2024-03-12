@@ -56,8 +56,8 @@ export async function generateMetadata({
     image,
   } = project.metadata;
   let ogImage = image
-    ? `https://localhost:3000${image}`
-    : `https://localhost:3000/og?title=${title}&emoji=${(encodeURIComponent(emoji))}&name=${(encodeURIComponent(name))}&date=${(encodeURIComponent(publishedTime))}`;
+    ? `https://emojihack.com${image}`
+    : `https://emojihack.com/og?title=${title}&emoji=${(encodeURIComponent(emoji))}&name=${(encodeURIComponent(name))}&date=${(encodeURIComponent(publishedTime))}`;
 
   return {
     title,
@@ -67,7 +67,7 @@ export async function generateMetadata({
       description,
       type: 'article',
       publishedTime,
-      url: `https://localhost:3000/${project.slug}`,
+      url: `https://emojihack.com/${project.slug}`,
       images: [
         {
           url: ogImage,
