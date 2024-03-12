@@ -7,17 +7,22 @@ import type { Metadata } from "next";
 
 const inter = Inter({ subsets: ["latin"] });
 
-let faviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🛠️</text></svg>`;
-let faviconPng = `https://emojihack.com/api/faviconpng?emoji=${encodeURIComponent('🛠️')}`;
+// let faviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🛠️</text></svg>`;
+// let faviconPng = `https://emojihack.com/api/faviconpng?emoji=${encodeURIComponent('🛠️')}`;
+
+let faviconSvgUrl = `data:image/svg+xml,${encodeURIComponent(
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🛠️</text></svg>`
+)}`;
+let faviconPngUrl = `/api/faviconpng?emoji=${encodeURIComponent('🛠️')}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://emojihack.com'),
   title: 'Emoji Hack',
   description: 'A project for every single emoji',
   icons: {
-    icon: `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`,
-    shortcut: faviconPng,
-    apple: faviconPng,
+    icon: faviconSvgUrl,
+    shortcut: faviconPngUrl,
+    apple: faviconPngUrl,
   },
   openGraph: {
     title: 'Emoji Hack',

@@ -6,12 +6,17 @@ export const runtime = "edge"
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const emoji = searchParams.get('emoji');
+  const userAgent = req.headers.get('User-Agent') || '';
 
   if (!emoji) {
     return new Response('Invalid request', { status: 400 });
   }
 
-  return new ImageResponse(
+  const isMobile = Boolean(
+    userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i)
+  );
+
+ return new ImageResponse(
     (
       <div
         style={{
@@ -21,11 +26,12 @@ export async function GET(req: NextRequest) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          fontFamily: isMobile ? 'Apple Color Emoji' : 'sans-serif', // <-- Add this line
         }}
       >
         <div
           style={{
-            fontSize: '96px',
+            fontSize: isMobile ? '96px' : '48px',
           }}
         >
           {emoji}
@@ -33,10 +39,9 @@ export async function GET(req: NextRequest) {
       </div>
     ),
     {
-      width: 128,
-      height: 128,
-      emoji: 'twemoji',
+      width: isMobile ? 128 : 64,
+      height: isMobile ? 128 : 64,
+      emoji: 'twemoji', // <-- Update this line
     }
   );
-
 }
