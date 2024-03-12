@@ -3,11 +3,6 @@ import { NextRequest } from 'next/server';
 
 export const runtime = "edge"
 
-export const size = {
-  width: 32,
-  height: 32,
-}
-
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const emoji = searchParams.get('emoji');
@@ -36,7 +31,9 @@ export async function GET(req: NextRequest) {
       </div>
     ),
     {
-      ...size
+      width: 32,
+      height: 32,
+
     }
   );
 }
