@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import jimp from "jimp";
 
-
+export const runtime = "edge"
 
 export async function GET(req: NextRequest) {
   try {
@@ -12,11 +12,22 @@ export async function GET(req: NextRequest) {
       return new Response("Invalid request", { status: 400 });
     }
 
-    const font = await jimp.loadFont(jimp.FONT_SANS_128_BLACK);
-    const image = new jimp(128, 128, 0xffffffff);
-    image.print(font, 0, 0, emoji, 128);
+    const canvas = new OffscreenCanvas(128, 128);
+    const context = canvas.getContext("2d");
 
-    const buffer = await image.getBufferAsync(jimp.MIME_PNG);
+    if (!context) {
+      throw new Error("Failed to get canvas context");
+    }
+
+    context.fillStyle = "#ffffff";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    context.font = "96px sans-serif";
+    context.textAlign = "center";
+    context.textBaseline = "middle";
+    context.fillStyle = "#000000";
+    context.fillText(emoji, canvas.width / 2, canvas.height / 2);
+
+    const buffer = await canvas.convertToBlob();
     const response = new Response(buffer, {
       headers: {
         "Content-Type": "image/png",
