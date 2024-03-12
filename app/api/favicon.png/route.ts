@@ -3,7 +3,7 @@ import jimp from "jimp";
 
 export const runtime = "edge"
 
-export default async function handler(req: NextRequest) {
+export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const emoji = searchParams.get("emoji");
 
