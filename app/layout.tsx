@@ -8,6 +8,7 @@ import type { Metadata } from "next";
 const inter = Inter({ subsets: ["latin"] });
 
 let faviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🛠️</text></svg>`;
+let faviconPng = `https://emojihack.com/api/favicon.png?emoji=${encodeURIComponent('🛠️')}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://emojihack.com'),
@@ -15,6 +16,8 @@ export const metadata: Metadata = {
   description: 'A project for every single emoji',
   icons: {
     icon: `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`,
+    shortcut: faviconPng,
+    apple: faviconPng,
   },
   openGraph: {
     title: 'Emoji Hack',

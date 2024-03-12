@@ -61,11 +61,14 @@ export async function generateMetadata({
     // ? `https://localhost:3000${image}`
     // : `https://localhost:3000/og?title=${title}&emoji=${(encodeURIComponent(emoji))}&name=${(encodeURIComponent(name))}&date=${(encodeURIComponent(publishedTime))}`;
     let faviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">${emoji}</text></svg>`;
+    let faviconPng = `https://emojihack.com/api/favicon.png?emoji=${encodeURIComponent(emoji)}`;
   return {
     title,
     description,
     icons: {
       icon: `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`,
+      shortcut: faviconPng,
+      apple: faviconPng,
     },
     openGraph: {
       title,
