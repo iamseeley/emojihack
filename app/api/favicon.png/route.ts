@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import jimp from "jimp";
 
-export const config = {
-  runtime: "edge",
-};
+export const runtime = "edge"
 
 export default async function handler(req: NextRequest) {
   const { searchParams } = new URL(req.url);
