@@ -8,7 +8,7 @@ import type { Metadata } from "next";
 const inter = Inter({ subsets: ["latin"] });
 
 let faviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🛠️</text></svg>`;
-let faviconPng = `https://emojihack.com/api/favicon.png?emoji=${encodeURIComponent('🛠️')}`;
+let faviconPng = `https://emojihack.com/api/faviconpng?emoji=${encodeURIComponent('🛠️')}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://emojihack.com'),
