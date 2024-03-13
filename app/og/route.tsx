@@ -50,6 +50,7 @@ export async function GET(req: NextRequest) {
   const date = searchParams.get('date');
   const formattedDate = formatDate(date);
   const emojiRows = Array.from({ length: 4 }, () => getRandomEmojis(emojis, 5)).join('\n');
+ 
 
   return new ImageResponse(
     (
@@ -89,7 +90,7 @@ export async function GET(req: NextRequest) {
         <div style={{
           display: 'flex',
           fontSize: '84px',
-        }}><span>{emoji}</span></div>
+        }}>{emoji}</div>
         <div style={{
           fontSize: '84px',
           fontWeight: 'bold',
@@ -124,7 +125,6 @@ export async function GET(req: NextRequest) {
     {
       width: 1920,
       height: 1080,
-      emoji: 'twemoji',
     }
   );
 }

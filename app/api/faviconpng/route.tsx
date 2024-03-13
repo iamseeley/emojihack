@@ -6,8 +6,8 @@ export const runtime = "edge"
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const emoji = searchParams.get('emoji');
-  const userAgent = req.headers.get('User-Agent') || '';
-
+  // const userAgent = req.headers.get('User-Agent') || '';
+  
   if (!emoji) {
     return new Response('Invalid request', { status: 400 });
   }
@@ -32,7 +32,6 @@ export async function GET(req: NextRequest) {
     {
       width: 32,
       height: 32,
-
     }
   );
 }

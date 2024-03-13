@@ -69,8 +69,8 @@ export async function generateMetadata({
     description,
     icons: {
       icon: faviconSvgUrl,
-      shortcut: faviconPngUrl,
-      apple: faviconPngUrl,
+      // shortcut: faviconPngUrl,
+      // apple: faviconPngUrl,
     },
     openGraph: {
       title,
