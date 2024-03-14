@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 import emojisOG from '../../emojis/emojisOg.json';
 
 
-export async function generateMetadata({ params, isSafariOnIOS }) {
+export async function generateMetadata({ params, isSafariOnIOS }): Promise<Metadata | undefined> {
     const faviconPngData = emojisOG['🛠️'];
 
     let faviconSvgUrl = `data:image/svg+xml,${encodeURIComponent(

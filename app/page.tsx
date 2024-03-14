@@ -7,9 +7,10 @@ import { ProjectSpeed } from "./components/ProjectSpeed";
 import { parseISO, differenceInCalendarWeeks, startOfWeek, isWithinInterval } from 'date-fns';
 import ProjectsDisplay from "./components/ProjectsDisplay";
 import emojisOG from '../emojis/emojisOg.json';
+import { Metadata } from 'next';
 
 
-export async function generateMetadata({ params, isSafariOnIOS }) {
+export async function generateMetadata({ params, isSafariOnIOS }): Promise<Metadata | undefined> {
   const faviconPngData = emojisOG['🛠️'];
 
   let faviconSvgUrl = `data:image/svg+xml,${encodeURIComponent(
