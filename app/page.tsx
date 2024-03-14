@@ -1,4 +1,5 @@
 import emojis from '../emojis/emojis.json'
+import { emojiArray } from '../emojis/emojis'
 import { getProjects } from "./utils/project";
 import ProjectStatus from "./components/ProjectsStatus";
 import Hero from "./components/Hero";
@@ -18,7 +19,7 @@ export default function Home() {
     return acc;
   }, {});
   // const associatedEmojis = Array.from(associatedEmojisSet);
-  const totalEmojisCount = emojis.length;
+  const totalEmojisCount = emojiArray.length;
   const associatedEmojisCount = Object.keys(emojiToProjectSlug).length;
   const startDate = startOfWeek(parseISO('2024-02-25'), { weekStartsOn: 1 }); // weekStartsOn: 1 for Monday
   const currentWeekStart = startOfWeek(new Date(), { weekStartsOn: 1 });
@@ -39,7 +40,7 @@ export default function Home() {
             <ProjectStatus totalEmojisCount={totalEmojisCount} associatedEmojisCount={associatedEmojisCount} />
             <ProjectSpeed projectsPerWeek={projectsPerWeek} />  
           </div>
-          <ProjectsDisplay projectUrl={emojiToProjectSlug} emojiToProjectSlug={emojiToProjectSlug} emojis={emojis} allProjects={allProjects} />
+          <ProjectsDisplay projectUrl={emojiToProjectSlug} emojiToProjectSlug={emojiToProjectSlug} emojis={emojiArray} allProjects={allProjects} />
         </section>
       </div>
     </>

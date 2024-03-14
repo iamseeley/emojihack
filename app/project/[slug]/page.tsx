@@ -5,6 +5,7 @@ import Link from "next/link";
 import { unstable_noStore as noStore } from 'next/cache';
 import type { Metadata } from "next";
 import emojihack from '../../../emojihack.json'
+import { emojiArray } from '../../../emojis/emojis'
 
 function formatDate(date: string) {
   noStore();
@@ -55,22 +56,23 @@ export async function generateMetadata({
     description: description,
     image,
   } = project.metadata;
+  const emojiData = emojiArray.find((item) => item.emoji === emoji);
+  const faviconPngData = emojiData ? emojiData.apple : null;
   let ogImage = image
     ? `https://emojihack.com${image}`
-    : `https://emojihack.com/og?title=${title}&emoji=${(encodeURIComponent(emoji))}&name=${(encodeURIComponent(name))}&date=${(encodeURIComponent(publishedTime))}`;
+    : `https://emojihack.com/og?title=${title}&emojiPng=${encodeURIComponent(faviconPngData)}&name=${(encodeURIComponent(name))}&date=${(encodeURIComponent(publishedTime))}`;
     // ? `https://localhost:3000${image}`
     // : `https://localhost:3000/og?title=${title}&emoji=${(encodeURIComponent(emoji))}&name=${(encodeURIComponent(name))}&date=${(encodeURIComponent(publishedTime))}`;
     let faviconSvgUrl = `data:image/svg+xml,${encodeURIComponent(
       `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">${emoji}</text></svg>`
     )}`;
-    let faviconPngUrl = `/api/faviconpng?emoji=${encodeURIComponent(emoji)}`;
   return {
     title,
     description,
     icons: {
       icon: faviconSvgUrl,
-      // shortcut: faviconPngUrl,
-      // apple: faviconPngUrl,
+      shortcut: faviconPngData,
+      apple: faviconPngData,
     },
     openGraph: {
       title,

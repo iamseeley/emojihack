@@ -3,17 +3,21 @@ import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import type { Metadata } from "next";
-
+import { emojiArray } from '../emojis/emojis'
+import emoji from '../emojis/emojis.json'
 
 const inter = Inter({ subsets: ["latin"] });
 
 // let faviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🛠️</text></svg>`;
 // let faviconPng = `https://emojihack.com/api/faviconpng?emoji=${encodeURIComponent('🛠️')}`;
 
+const emojiData = emojiArray.find((item) => item.emoji === emoji);
+const faviconPngData = emojiData ? emojiData.apple : null;
+
 let faviconSvgUrl = `data:image/svg+xml,${encodeURIComponent(
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🛠️</text></svg>`
 )}`;
-let faviconPngUrl = `/api/faviconpng?emoji=${encodeURIComponent('🛠️')}`;
+
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://emojihack.com'),
@@ -21,8 +25,8 @@ export const metadata: Metadata = {
   description: 'A project for every single emoji',
   icons: {
     icon: faviconSvgUrl,
-    shortcut: faviconPngUrl,
-    apple: faviconPngUrl,
+    shortcut: faviconPngData,
+    apple: faviconPngData,
   },
   openGraph: {
     title: 'Emoji Hack',

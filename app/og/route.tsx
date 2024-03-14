@@ -46,6 +46,7 @@ export async function GET(req: NextRequest) {
   const { searchParams } = req.nextUrl;
   const projectTitle = searchParams.get('title');
   const emoji = searchParams.get('emoji');
+  const emojiPngData = searchParams.get('emojiPng');
   const name = searchParams.get('name');
   const date = searchParams.get('date');
   const formattedDate = formatDate(date);
@@ -87,10 +88,24 @@ export async function GET(req: NextRequest) {
               gap: '20px',
             }}
           >
-        <div style={{
-          display: 'flex',
-          fontSize: '84px',
-        }}>{emoji}</div>
+
+          <div
+            style={{
+              display: 'flex',
+            }}
+          >
+          {emojiPngData && (
+          <img
+            src={decodeURIComponent(emojiPngData)}
+            alt="Emoji"
+            style={{ margin: '0' }}
+            width={84}
+            height={84}
+          />
+          )}
+          </div>
+        
+        
         <div style={{
           fontSize: '84px',
           fontWeight: 'bold',

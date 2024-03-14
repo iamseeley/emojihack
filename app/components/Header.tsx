@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 import emojis from '../../emojis/emojis.json'
 import emojihack from '../../emojihack.json'
+import { emojiArray } from '../../emojis/emojis'
 
 export default function Header() {
 
@@ -13,7 +14,7 @@ export default function Header() {
   useEffect(() => {
     const intervalId = setInterval(() => {
       
-      const randomEmojiObject = emojis[Math.floor(Math.random() * emojis.length)];
+      const randomEmojiObject = emojis[Math.floor(Math.random() * emojiArray.length)];
       setCurrentEmoji(randomEmojiObject.emoji); 
     }, 1500); 
     return () => clearInterval(intervalId);

@@ -1,11 +1,7 @@
 import { EmojiProps } from '@/emojis/emojis'; 
 import Emoji from './Emoji'; 
 
-interface ProjectGraphProps {
-  associatedEmojis: { [key: string]: string };
-  emojis: EmojiProps[];
-  allProjects: [];
-}
+
 
 const ProjectGraph = ({ associatedEmojis, emojis, allProjects }) => {
   
