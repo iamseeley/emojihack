@@ -8,6 +8,7 @@ import emojihack from '../../../emojihack.json'
 import { emojiArray } from '../../../emojis/emojis'
 import emojisOG from '../../../emojis/emojisOg.json';
 import { headers } from "next/headers";
+import { userAgent } from "next/server";
 
 
 function formatDate(date: string) {
@@ -71,8 +72,9 @@ export async function generateMetadata({
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">${emoji}</text></svg>`
   )}`;
 
-  const userAgent = headers().get('user-agent');
-  const isIOSOrSafari = userAgent?.includes('iPhone') || userAgent?.includes('iPad') || userAgent?.includes('Safari');
+  const headersObj = headers(); // Get the ReadonlyHeaders object
+  const { device } = userAgent({ headers: new Headers(headersObj) }); // Create a new Headers instance with the ReadonlyHeaders object
+  const isIOSOrSafari = device.type === 'mobile' || headers().get('user-agent')?.includes('Safari');
 
   return {
     title,

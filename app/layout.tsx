@@ -4,12 +4,16 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import type { Metadata } from "next";
 import emojisOG from '../emojis/emojisOg.json';
+import { headers } from "next/headers";
+import { userAgent } from "next/server";
 
 const inter = Inter({ subsets: ["latin"] });
 
 // let faviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🛠️</text></svg>`;
 // let faviconPng = `https://emojihack.com/api/faviconpng?emoji=${encodeURIComponent('🛠️')}`;
-
+const headersObj = headers(); // Get the ReadonlyHeaders object
+const { device } = userAgent({ headers: new Headers(headersObj) }); // Create a new Headers instance with the ReadonlyHeaders object
+const isIOSOrSafari = device.type === 'mobile' || headers().get('user-agent')?.includes('Safari');
 
 const faviconPngData = emojisOG['🛠️'];
 
@@ -23,7 +27,7 @@ export const metadata: Metadata = {
   title: 'Emoji Hack',
   description: 'A project for every single emoji',
   icons: {
-    icon: faviconSvgUrl,
+    icon: isIOSOrSafari ? faviconPngData : faviconSvgUrl,
     shortcut: faviconPngData,
     apple: faviconPngData,
   },
