@@ -11,7 +11,8 @@ const inter = Inter({ subsets: ["latin"] });
 // let faviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🛠️</text></svg>`;
 // let faviconPng = `https://emojihack.com/api/faviconpng?emoji=${encodeURIComponent('🛠️')}`;
 
-const emojiData = emojiArray.find((item) => item.emoji === emoji);
+const emojiString = '🛠️';
+const emojiData = emojiArray.find((item) => item.emoji === emojiString);
 const faviconPngData = emojiData ? emojiData.apple : null;
 
 let faviconSvgUrl = `data:image/svg+xml,${encodeURIComponent(
