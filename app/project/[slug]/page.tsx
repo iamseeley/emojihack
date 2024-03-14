@@ -44,20 +44,15 @@ function formatDate(date: string) {
   return `${fullDate} (${formattedDate})`;
 }
 
-type Props = {
-  params: any;
-  isSafariOnIOS: { [key: string]: string | string[] | undefined }
-}
 
 
 export async function generateMetadata({
-  params, isSafariOnIOS,
-}: Props): Promise<Metadata | undefined> {
+  params
+}): Promise<Metadata | undefined> {
   let project = getProjects().find((project) => project.slug === params.slug);
   if (!project) {
     return;
   }
-  const isSafari = true;
   let name = 'made by ' + emojihack.preferredName?.toLowerCase() ?? 'add name in emojihack.json';
   let {
     title,
@@ -94,17 +89,16 @@ export async function generateMetadata({
   
   //   return isIOSOrSafari ? faviconPngData : faviconSvgUrl;
   // }
-  const faviconUrl = isSafariOnIOS ? faviconPngData : faviconSvgUrl;
+  
 
   return {
     title,
     description,
     icons: { 
-      icon: { url: faviconUrl, type: isSafariOnIOS ? 'image/png' : 'image/svg+xml' },
-      // icon: [
-      //   { url: faviconSvgUrl, type: 'image/svg+xml' },
-      //   { url: faviconPngData, type: 'image/png' },
-      // ],
+      icon: [
+        { url: faviconSvgUrl, type: 'image/svg+xml' },
+        { url: faviconPngData, type: 'image/png' },
+      ],
       shortcut: faviconPngData,
       apple: faviconPngData,
     },
