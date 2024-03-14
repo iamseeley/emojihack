@@ -11,7 +11,7 @@ import { Metadata } from 'next';
 
 type Props = {
   params: { id: string }
-  isSafariOnIOS: { [key: string]: string | string[] | undefined }
+  isSafariOnIOS: boolean;
 }
 
 export async function generateMetadata({ params, isSafariOnIOS }: Props): Promise<Metadata | undefined> {
@@ -33,7 +33,7 @@ export async function generateMetadata({ params, isSafariOnIOS }: Props): Promis
 
 
 
-export default function Home() {
+export default function Home({ params, isSafariOnIOS}) {
   const allProjects = getProjects();
   // const associatedEmojisSet = new Set(allProjects.map(project => project.metadata.emoji));
   const emojiToProjectSlug = allProjects.reduce((acc, project) => {

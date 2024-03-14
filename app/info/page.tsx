@@ -4,7 +4,7 @@ import emojisOG from '../../emojis/emojisOg.json';
 
 type Props = {
     params: { id: string }
-    isSafariOnIOS: { [key: string]: string | string[] | undefined }
+    isSafariOnIOS: boolean;
   }
 
 export async function generateMetadata({ params, isSafariOnIOS }: Props): Promise<Metadata | undefined> {
