@@ -2,13 +2,13 @@ import Link from "next/link"
 import type { Metadata } from "next"
 import emojisOG from '../../emojis/emojisOg.json';
 
-export async function getServerSideProps({ req }) {
-    // Read the cookie or custom header set by the middleware
-    const isSafariOnIOS = req.cookies.isSafariOnIOS === 'true';
+// async function getServerSideProps({ req }) {
+//     // Read the cookie or custom header set by the middleware
+//     const isSafariOnIOS = req.cookies.isSafariOnIOS === 'true';
     
-    // Pass it as a prop to your page component
-    return { props: { isSafariOnIOS } };
-  }
+//     // Pass it as a prop to your page component
+//     return { props: { isSafariOnIOS } };
+//   }
   
 
 
