@@ -95,15 +95,15 @@ export async function GET(req: NextRequest) {
             src={decodeURIComponent(emojiPngData)}
             alt="Emoji"
             style={{ margin: '0' }}
-            width={84}
-            height={84}
+            width={104}
+            height={104}
           />
           )}
           </div>
         
         
         <div style={{
-          fontSize: '84px',
+          fontSize: '104px',
           fontWeight: 'bold',
         }}>
           {projectTitle}
