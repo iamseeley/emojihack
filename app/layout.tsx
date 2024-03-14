@@ -11,9 +11,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 // let faviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🛠️</text></svg>`;
 // let faviconPng = `https://emojihack.com/api/faviconpng?emoji=${encodeURIComponent('🛠️')}`;
-const headersObj = headers(); // Get the ReadonlyHeaders object
-const { device } = userAgent({ headers: new Headers(headersObj) }); // Create a new Headers instance with the ReadonlyHeaders object
-const isIOSOrSafari = device.type === 'mobile' || headers().get('user-agent')?.includes('Safari');
+
 
 const faviconPngData = emojisOG['🛠️'];
 
@@ -21,13 +19,33 @@ let faviconSvgUrl = `data:image/svg+xml,${encodeURIComponent(
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🛠️</text></svg>`
 )}`;
 
+// function getIconUrl(emoji: string) {
+//   const headersObj = typeof headers === 'function' ? headers() : undefined;
+//   const { device } = headersObj
+//     ? userAgent({ headers: headersObj })
+//     : { device: { type: undefined } };
+//   const isIOSOrSafari =
+//     device.type === 'mobile' || (headersObj && headersObj.get('user-agent')?.includes('Safari'));
+
+//   const faviconPngData = emojisOG[emoji];
+//   const faviconSvgUrl = `data:image/svg+xml,${encodeURIComponent(
+//     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">${emoji}</text></svg>`
+//   )}`;
+
+//   return isIOSOrSafari ? faviconPngData : faviconSvgUrl;
+// }
+
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://emojihack.com'),
   title: 'Emoji Hack',
   description: 'A project for every single emoji',
   icons: {
-    icon: isIOSOrSafari ? faviconPngData : faviconSvgUrl,
+    icon: [
+      { url: faviconSvgUrl, type: 'image/svg+xml' },
+      { url: faviconPngData, type: 'image/png' },
+    ],
+    // icon: getIconUrl('🛠️'),
     shortcut: faviconPngData,
     apple: faviconPngData,
   },
