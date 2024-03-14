@@ -6,34 +6,12 @@ import Hero from "./components/Hero";
 import { ProjectSpeed } from "./components/ProjectSpeed";
 import { parseISO, differenceInCalendarWeeks, startOfWeek, isWithinInterval } from 'date-fns';
 import ProjectsDisplay from "./components/ProjectsDisplay";
-import emojisOG from '../emojis/emojisOg.json';
-import { Metadata } from 'next';
-
-type Props = {
-  params: { id: string }
-  isSafariOnIOS: boolean;
-}
-
-export async function generateMetadata({ params, isSafariOnIOS }: Props): Promise<Metadata | undefined> {
-  const faviconPngData = emojisOG['🛠️'];
-
-  let faviconSvgUrl = `data:image/svg+xml,${encodeURIComponent(
-  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🛠️</text></svg>`
-  )}`;
-  const faviconUrl = isSafariOnIOS ? faviconPngData : faviconSvgUrl;
-  return {
-      icons: { 
-          icon: { url: faviconUrl, type: isSafariOnIOS ? 'image/png' : 'image/svg+xml' },
-          shortcut: faviconPngData,
-          apple: faviconPngData,
-        },
-  }
-}
 
 
 
 
-export default function Home({ params, isSafariOnIOS}) {
+
+export default function Home() {
   const allProjects = getProjects();
   // const associatedEmojisSet = new Set(allProjects.map(project => project.metadata.emoji));
   const emojiToProjectSlug = allProjects.reduce((acc, project) => {
