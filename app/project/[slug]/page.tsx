@@ -7,6 +7,7 @@ import type { Metadata } from "next";
 import emojihack from '../../../emojihack.json'
 import { emojiArray } from '../../../emojis/emojis'
 import emojisOG from '../../../emojis/emojisOg.json';
+import { headers } from "next/headers";
 
 function formatDate(date: string) {
   noStore();
@@ -68,11 +69,15 @@ export async function generateMetadata({
     let faviconSvgUrl = `data:image/svg+xml,${encodeURIComponent(
       `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">${emoji}</text></svg>`
     )}`;
+
+    const userAgent = headers().get('user-agent');
+    const isIOSOrSafari = userAgent?.includes('iPhone') || userAgent?.includes('iPad') || userAgent?.includes('Safari');
+
   return {
     title,
     description,
     icons: {
-      icon: faviconSvgUrl,
+      icon: isIOSOrSafari ? faviconPngData : faviconSvgUrl,
       shortcut: faviconPngData,
       apple: faviconPngData,
     },
@@ -151,7 +156,7 @@ export default function Project({ params }) {
             <div className="mt-8 flex flex-col gap-2 justify-center items-center">
                 {prevProject && (
                     <Link href={`/project/${prevProject.slug}`} className="text-blue-600 font-medium hover:underline flex items-center gap-1 group">
-                        <span className="group-hover:translate-x-2 transform ease-in-out"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 8L2 12L6 16"/><path d="M2 12H22"/></svg></span> Prev: {prevProject.metadata.title}
+                        <span className="group-hover:-translate-x-2 transform ease-in-out"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 8L2 12L6 16"/><path d="M2 12H22"/></svg></span> Prev: {prevProject.metadata.title}
                     </Link>
                 )}
                 {nextProject && (
