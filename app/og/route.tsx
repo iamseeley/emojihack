@@ -38,19 +38,15 @@ function formatDate(date: string) {
 
 export const runtime = 'edge';
 
-function getRandomEmojis(emojiList, count) {
-  return Array.from({ length: count }, () => emojiList[Math.floor(Math.random() * emojiList.length)].emoji).join(' ');
-}
 
 export async function GET(req: NextRequest) {
   const { searchParams } = req.nextUrl;
   const projectTitle = searchParams.get('title');
-  const emoji = searchParams.get('emoji');
   const emojiPngData = searchParams.get('emojiPng');
   const name = searchParams.get('name');
   const date = searchParams.get('date');
   const formattedDate = formatDate(date);
-  const emojiRows = Array.from({ length: 4 }, () => getRandomEmojis(emojis, 5)).join('\n');
+ 
  
 
   return new ImageResponse(

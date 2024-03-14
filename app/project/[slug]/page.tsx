@@ -6,6 +6,7 @@ import { unstable_noStore as noStore } from 'next/cache';
 import type { Metadata } from "next";
 import emojihack from '../../../emojihack.json'
 import { emojiArray } from '../../../emojis/emojis'
+import emojisOG from '../../../emojis/emojisOg.json';
 
 function formatDate(date: string) {
   noStore();
@@ -57,7 +58,8 @@ export async function generateMetadata({
     image,
   } = project.metadata;
   const emojiData = emojiArray.find((item) => item.emoji === emoji);
-  const faviconPngData = emojiData ? emojiData.apple : null;
+  // const faviconPngData = emojiData ? emojiData.apple : null;
+  const faviconPngData = emojisOG[emoji];
   let ogImage = image
     ? `https://emojihack.com${image}`
     : `https://emojihack.com/og?title=${title}&emojiPng=${encodeURIComponent(faviconPngData)}&name=${(encodeURIComponent(name))}&date=${(encodeURIComponent(publishedTime))}`;

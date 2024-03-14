@@ -3,17 +3,15 @@ import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import type { Metadata } from "next";
-import { emojiArray } from '../emojis/emojis'
-import emoji from '../emojis/emojis.json'
+import emojisOG from '../emojis/emojisOg.json';
 
 const inter = Inter({ subsets: ["latin"] });
 
 // let faviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🛠️</text></svg>`;
 // let faviconPng = `https://emojihack.com/api/faviconpng?emoji=${encodeURIComponent('🛠️')}`;
 
-const emojiString = '🛠️';
-const emojiData = emojiArray.find((item) => item.emoji === emojiString);
-const faviconPngData = emojiData ? emojiData.apple : null;
+
+const faviconPngData = emojisOG['🛠️'];
 
 let faviconSvgUrl = `data:image/svg+xml,${encodeURIComponent(
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🛠️</text></svg>`
