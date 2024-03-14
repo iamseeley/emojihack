@@ -9,8 +9,12 @@ import ProjectsDisplay from "./components/ProjectsDisplay";
 import emojisOG from '../emojis/emojisOg.json';
 import { Metadata } from 'next';
 
+type Props = {
+  params: { id: string }
+  isSafariOnIOS: { [key: string]: string | string[] | undefined }
+}
 
-export async function generateMetadata({ params, isSafariOnIOS }): Promise<Metadata | undefined> {
+export async function generateMetadata({ params, isSafariOnIOS }: Props): Promise<Metadata | undefined> {
   const faviconPngData = emojisOG['🛠️'];
 
   let faviconSvgUrl = `data:image/svg+xml,${encodeURIComponent(
