@@ -89,16 +89,31 @@ export async function generateMetadata({
   
   //   return isIOSOrSafari ? faviconPngData : faviconSvgUrl;
   // }
+  function getIconUrl(emoji: string) {
+    const headersObj = typeof headers === 'function' ? headers() : undefined;
+    const { device } = headersObj
+      ? userAgent({ headers: headersObj })
+      : { device: { type: undefined } };
+    const isIOSOrSafari =
+      device.type === 'mobile' || (headersObj && headersObj.get('user-agent')?.includes('Safari'));
   
-
+    const faviconPngData = emojisOG[emoji];
+    const faviconSvgUrl = `data:image/svg+xml,${encodeURIComponent(
+      `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">${emoji}</text></svg>`
+    )}`;
+  
+    return isIOSOrSafari ? faviconPngData : faviconSvgUrl;
+  }
+  
+  const faviconUrl = getIconUrl(emoji);
   return {
     title,
     description,
-    icons: { 
-      icon: [
-        { url: faviconSvgUrl, type: 'image/svg+xml' },
-        { url: faviconPngData, type: 'image/png' },
-      ],
+    icons: { icon: faviconUrl,
+      // icon: [
+      //   { url: faviconSvgUrl, type: 'image/svg+xml' },
+      //   { url: faviconPngData, type: 'image/png' },
+      // ],
       shortcut: faviconPngData,
       apple: faviconPngData,
     },
