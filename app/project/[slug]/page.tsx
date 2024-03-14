@@ -46,12 +46,13 @@ function formatDate(date: string) {
 
 
 export async function generateMetadata({
-  params,
+  params, isSafariOnIOS,
 }): Promise<Metadata | undefined> {
   let project = getProjects().find((project) => project.slug === params.slug);
   if (!project) {
     return;
   }
+  const isSafari = true;
   let name = 'made by ' + emojihack.preferredName?.toLowerCase() ?? 'add name in emojihack.json';
   let {
     title,
@@ -60,7 +61,7 @@ export async function generateMetadata({
     description: description,
     image,
   } = project.metadata;
-  const emojiData = emojiArray.find((item) => item.emoji === emoji);
+  
   // const faviconPngData = emojiData ? emojiData.apple : null;
   const faviconPngData = emojisOG[emoji];
   let ogImage = image
@@ -71,7 +72,8 @@ export async function generateMetadata({
   let faviconSvgUrl = `data:image/svg+xml,${encodeURIComponent(
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">${emoji}</text></svg>`
   )}`;
-
+  const emojiData = emojiArray.find(item => item.emoji === emoji);
+  // const faviconUrl = isSafari ? emojisOG[emoji] : `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">${emoji}</text></svg>`)}`;
   // function getIconUrl(emoji: string) {
   //   const headersObj = typeof headers === 'function' ? headers() : undefined;
   //   const { device } = headersObj
@@ -87,16 +89,17 @@ export async function generateMetadata({
   
   //   return isIOSOrSafari ? faviconPngData : faviconSvgUrl;
   // }
+  const faviconUrl = isSafariOnIOS ? faviconPngData : faviconSvgUrl;
 
   return {
     title,
     description,
-    icons: {
-      // icon: getIconUrl(emoji),
-      icon: [
-        { url: faviconSvgUrl, type: 'image/svg+xml' },
-        { url: faviconPngData, type: 'image/png' },
-      ],
+    icons: { 
+      icon: { url: faviconUrl, type: isSafariOnIOS ? 'image/png' : 'image/svg+xml' },
+      // icon: [
+      //   { url: faviconSvgUrl, type: 'image/svg+xml' },
+      //   { url: faviconPngData, type: 'image/png' },
+      // ],
       shortcut: faviconPngData,
       apple: faviconPngData,
     },
@@ -169,7 +172,7 @@ export default function Project({ params }) {
             </ul>
             )}
             <h3 className="text-2xl font-semibold mt-6 mb-4">Notes</h3>
-            <article className="prose prose-h3:text-2xl prose-h3:font-semibold"><Mdx source={project.content} /></article>
+            <article className="max-w-3xl prose prose-h3:text-2xl prose-h3:font-semibold"><Mdx source={project.content} /></article>
 
 
             <div className="mt-8 flex flex-col gap-2 justify-center items-center">

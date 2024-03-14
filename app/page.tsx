@@ -6,7 +6,24 @@ import Hero from "./components/Hero";
 import { ProjectSpeed } from "./components/ProjectSpeed";
 import { parseISO, differenceInCalendarWeeks, startOfWeek, isWithinInterval } from 'date-fns';
 import ProjectsDisplay from "./components/ProjectsDisplay";
+import emojisOG from '../emojis/emojisOg.json';
 
+
+export async function generateMetadata({ params, isSafariOnIOS }) {
+  const faviconPngData = emojisOG['🛠️'];
+
+  let faviconSvgUrl = `data:image/svg+xml,${encodeURIComponent(
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🛠️</text></svg>`
+  )}`;
+  const faviconUrl = isSafariOnIOS ? faviconPngData : faviconSvgUrl;
+  return {
+      icons: { 
+          icon: { url: faviconUrl, type: isSafariOnIOS ? 'image/png' : 'image/svg+xml' },
+          shortcut: faviconPngData,
+          apple: faviconPngData,
+        },
+  }
+}
 
 
 
@@ -40,7 +57,7 @@ export default function Home() {
             <ProjectStatus totalEmojisCount={totalEmojisCount} associatedEmojisCount={associatedEmojisCount} />
             <ProjectSpeed projectsPerWeek={projectsPerWeek} />  
           </div>
-          <ProjectsDisplay projectUrl={emojiToProjectSlug} emojiToProjectSlug={emojiToProjectSlug} emojis={emojiArray} allProjects={allProjects} />
+          <ProjectsDisplay projectUrl={emojiToProjectSlug} emojiToProjectSlug={emojiToProjectSlug} emojis={emojis} allProjects={allProjects} />
         </section>
       </div>
     </>

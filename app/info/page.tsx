@@ -1,15 +1,30 @@
 import Link from "next/link"
 import type { Metadata } from "next"
+import emojisOG from '../../emojis/emojisOg.json';
 
-export const metadata: Metadata = {
-    title: 'Info ~ Emoji Hack',
-    description: 'Emoji Hack is a collection of software and web dev projects for every single emoji',
-    openGraph: {
-      title: 'Info',
-      description: 'Emoji Hack is a collection of software and web dev projects for every single emoji',
-      url: 'https://emojihack.com/info',
-    },  
-  };
+
+export async function generateMetadata({ params, isSafariOnIOS }) {
+    const faviconPngData = emojisOG['🛠️'];
+
+    let faviconSvgUrl = `data:image/svg+xml,${encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🛠️</text></svg>`
+    )}`;
+    const faviconUrl = isSafariOnIOS ? faviconPngData : faviconSvgUrl;
+    return {
+        title: 'Info ~ Emoji Hack',
+        description: 'Emoji Hack is a collection of software and web dev projects for every single emoji',
+        icons: { 
+            icon: { url: faviconUrl, type: isSafariOnIOS ? 'image/png' : 'image/svg+xml' },
+            shortcut: faviconPngData,
+            apple: faviconPngData,
+          },
+        openGraph: {
+          title: 'Info',
+          description: 'Emoji Hack is a collection of software and web dev projects for every single emoji',
+          url: 'https://emojihack.com/info',
+        },  
+    }
+}
 
 
 export default function Info() {
