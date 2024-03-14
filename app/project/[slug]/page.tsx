@@ -7,6 +7,7 @@ import type { Metadata } from "next";
 import emojihack from '../../../emojihack.json'
 import { emojiArray } from '../../../emojis/emojis'
 import emojisOG from '../../../emojis/emojisOg.json';
+import { headers } from "next/headers";
 
 
 function formatDate(date: string) {
@@ -70,16 +71,18 @@ export async function generateMetadata({
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">${emoji}</text></svg>`
   )}`;
 
-  
+  const userAgent = headers().get('user-agent');
+  const isIOSOrSafari = userAgent?.includes('iPhone') || userAgent?.includes('iPad') || userAgent?.includes('Safari');
 
   return {
     title,
     description,
     icons: {
-      icon: [
-        { url: faviconSvgUrl, type: 'image/svg+xml' },
-        { url: faviconPngData, type: 'image/png' },
-      ],
+      icon: isIOSOrSafari ? faviconPngData : faviconSvgUrl,
+      // icon: [
+      //   { url: faviconSvgUrl, type: 'image/svg+xml' },
+      //   { url: faviconPngData, type: 'image/png' },
+      // ],
       shortcut: faviconPngData,
       apple: faviconPngData,
     },
