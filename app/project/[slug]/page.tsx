@@ -44,10 +44,15 @@ function formatDate(date: string) {
   return `${fullDate} (${formattedDate})`;
 }
 
+type Props = {
+  params: any;
+  isSafariOnIOS: { [key: string]: string | string[] | undefined }
+}
+
 
 export async function generateMetadata({
   params, isSafariOnIOS,
-}): Promise<Metadata | undefined> {
+}: Props): Promise<Metadata | undefined> {
   let project = getProjects().find((project) => project.slug === params.slug);
   if (!project) {
     return;
