@@ -31,7 +31,7 @@ export async function generateMetadata({ params, isSafariOnIOS }: Props): Promis
 }
 
 
-export default function Info() {
+export default function Info({ params, isSafariOnIOS }) {
     return (
         <section>
             <div className="mb-8">
