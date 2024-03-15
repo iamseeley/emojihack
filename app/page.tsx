@@ -20,12 +20,17 @@ const faviconUrl = `data:image/svg+xml,${encodeURIComponent(
 
 const faviconPngData = emojisOG['🛠️'];
 
+function getIconUrl() {
+  const headersInstance = headers();
+  const userAgentString = headersInstance.get('user-agent') || '';
+  const isMobileOrSafari = /Mobile|Safari/.test(userAgentString);
+  
+  return isMobileOrSafari ? faviconPngData : faviconUrl;
+}
+
 export const metadata: Metadata = {
   icons: { 
-    icon: [
-      { url: faviconUrl, type: 'image/svg+xml' },
-      { url: faviconPngData, type: 'image/png' },
-    ],
+    icon: getIconUrl(),
     shortcut: faviconPngData,
     apple: faviconPngData,
   },
