@@ -6,23 +6,23 @@ import type { Metadata } from 'next';
 
 const faviconUrl = `data:image/svg+xml,${encodeURIComponent(
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🛠️</text></svg>`
-  )}`;
-  const faviconPngData = emojisOG['🛠️'];
+)}`;
+const faviconPngData = emojisOG['🛠️'];
   
-  export const metadata: Metadata = {
-    title: 'Info ~ Emoji Hack',
+export const metadata: Metadata = {
+title: 'Info ~ Emoji Hack',
+description: 'Emoji Hack is a collection of software and web dev projects for every single emoji',
+icons: {
+    icon: faviconUrl,
+    shortcut: faviconPngData,
+    apple: faviconPngData,
+},
+openGraph: {
+    title: 'Info',
     description: 'Emoji Hack is a collection of software and web dev projects for every single emoji',
-    icons: {
-      icon: faviconUrl,
-      shortcut: faviconPngData,
-      apple: faviconPngData,
-    },
-    openGraph: {
-      title: 'Info',
-      description: 'Emoji Hack is a collection of software and web dev projects for every single emoji',
-      url: 'https://emojihack.com/info',
-    },
-  };
+    url: 'https://emojihack.com/info',
+},
+};
 
 // export async function generateMetadata(): Promise<Metadata> {
 //     function getIconUrl(emoji: string) {
@@ -67,18 +67,11 @@ const faviconUrl = `data:image/svg+xml,${encodeURIComponent(
 export default function Info() {
     return (
         <section>
-            <script
-                dangerouslySetInnerHTML={{
-                __html: `
-                    (function() {
-                    var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-                    var favicon = document.querySelector('link[rel="icon"]');
-                    if (isSafari && favicon) {
-                        favicon.href = '${faviconPngData}';
-                    }
-                    })();
-                `,
-                }}
+            <link
+                rel="icon"
+                href={faviconPngData}
+                type="image/png"
+                media="(webkit-user-agent:snapshotartist)"
             />
             <div className="mb-8">
                 <h2 className="flex gap-2 font-semibold text-3xl mb-2">What&apos;s Emoji Hack?</h2>

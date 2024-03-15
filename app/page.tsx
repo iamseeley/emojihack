@@ -48,18 +48,11 @@ export default function Home() {
 
   return (
     <>
-      <script
-          dangerouslySetInnerHTML={{
-          __html: `
-              (function() {
-              var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-              var favicon = document.querySelector('link[rel="icon"]');
-              if (isSafari && favicon) {
-                  favicon.href = '${faviconPngData}';
-              }
-              })();
-          `,
-          }}
+    <link
+        rel="icon"
+        href={faviconPngData}
+        type="image/png"
+        media="(webkit-user-agent:snapshotartist)"
       />
       <div className="flex flex-col gap-20">
         <section>
