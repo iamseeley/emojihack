@@ -15,7 +15,7 @@ description: 'Emoji Hack is a collection of software and web dev projects for ev
 icons: {
     icon: faviconUrl,
     shortcut: faviconPngData,
-    apple: faviconPngData,
+    apple: faviconPngData, 
 },
 openGraph: {
     title: 'Info',
@@ -67,12 +67,12 @@ openGraph: {
 export default function Info() {
     return (
         <section>
-            <link
+            {/* <link
                 rel="icon"
                 href={faviconPngData}
                 type="image/png"
                 media="(webkit-user-agent:snapshotartist)"
-            />
+            /> */}
             <div className="mb-8">
                 <h2 className="flex gap-2 font-semibold text-3xl mb-2">What&apos;s Emoji Hack?</h2>
             </div>

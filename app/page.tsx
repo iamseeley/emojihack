@@ -48,12 +48,12 @@ export default function Home() {
 
   return (
     <>
-    <link
+    {/* <link
         rel="icon"
         href={faviconPngData}
         type="image/png"
         media="(webkit-user-agent:snapshotartist)"
-      />
+      /> */}
       <div className="flex flex-col gap-20">
         <section>
           <Hero />
