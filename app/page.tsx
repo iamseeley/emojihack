@@ -13,30 +13,35 @@ import type { Metadata } from 'next';
 
 
 
-function getIconUrl(emoji: string) {
-  const headersObj = typeof headers === 'function' ? headers() : undefined;
-  const { device } = headersObj
-    ? userAgent({ headers: headersObj })
-    : { device: { type: undefined } };
-  const isIOSOrSafari =
-    device.type === 'mobile' || (headersObj && headersObj.get('user-agent')?.includes('Safari'));
 
-  const faviconPngData = emojisOG[emoji];
-  const faviconSvgUrl = `data:image/svg+xml,${encodeURIComponent(
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">${emoji}</text></svg>`
-  )}`;
+export async function generateMetadata(): Promise<Metadata> {
+  function getIconUrl(emoji: string) {
+    const headersObj = typeof headers === 'function' ? headers() : undefined;
+    const { device } = headersObj
+      ? userAgent({ headers: headersObj })
+      : { device: { type: undefined } };
+    const isIOSOrSafari =
+      device.type === 'mobile' || (headersObj && headersObj.get('user-agent')?.includes('Safari'));
+  
+    const faviconPngData = emojisOG[emoji];
+    const faviconSvgUrl = `data:image/svg+xml,${encodeURIComponent(
+      `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">${emoji}</text></svg>`
+    )}`;
+  
+    return isIOSOrSafari ? faviconPngData : faviconSvgUrl;
+  }
 
-  return isIOSOrSafari ? faviconPngData : faviconSvgUrl;
-}
 
-const faviconUrl = getIconUrl('🛠️');
-const faviconPngData = emojisOG['🛠️'];
+  const faviconUrl = getIconUrl('🛠️');
+  const faviconPngData = emojisOG['🛠️'];
 
-export const metadata: Metadata = {
+
+  return {
   icons: { icon: faviconUrl,
     shortcut: faviconPngData,
     apple: faviconPngData,
   },
+}
 };
 
 
