@@ -89,6 +89,7 @@ export default function Info() {
             <p>I wanted to make lots of different things and keep track of them in a fun way, so I thought, why not use emojis? Emojis are fun right?</p>
             <p>So, for every project there is an associated emoji. Sometimes an idea comes first, and then an emoji is chosen for it; other times, the emoji itself inspires the project.</p>
             <p>There will be a tag on each project indicating whether the idea or the emoji came first.</p>
+            
 
             <h3 className="text-2xl font-semibold ">Why do this?</h3>
             <p>Well, I did it for a few reasons.</p>
@@ -115,7 +116,7 @@ export default function Info() {
                 <span className="px-2 py-1 inline-flex bg-gray-100 text-sm font-medium">browser extensions</span>
             </div>
 
-            <p>I&apos;m going to try to keep the max time I spend on individual projects to one week.</p>
+            <p>I&apos;m going to try to keep the max time I spend on individual projects to one week, but will go longer depending on interest.</p>
             
             <p>If you would like to join in the fun go to the <Link target="_blank" rel="noreferrer noopener" href={'https://github.com/iamseeley/emojihack'}>source</Link> and follow the instructions to clone emoji hack and remove my project data. Then you can start adding your own projects!</p>
 
