@@ -20,17 +20,14 @@ const faviconUrl = `data:image/svg+xml,${encodeURIComponent(
 
 const faviconPngData = emojisOG['🛠️'];
 
-function getIconUrl() {
-  const headersInstance = headers();
-  const userAgentString = headersInstance.get('user-agent') || '';
-  const isMobileOrSafari = /Mobile|Safari/.test(userAgentString);
-  
-  return isMobileOrSafari ? faviconPngData : faviconUrl;
-}
+
 
 export const metadata: Metadata = {
   icons: { 
-    icon: getIconUrl(),
+    icon: [
+      { url: faviconUrl, type: 'image/svg+xml' },
+      { url: faviconPngData, type: 'image/png' },
+    ],
     shortcut: faviconPngData,
     apple: faviconPngData,
   },
@@ -58,6 +55,20 @@ export default function Home() {
 
   return (
     <>
+    <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            (function() {
+              var isMobileOrSafari = /Mobile|Safari/.test(navigator.userAgent);
+              var faviconElement = document.querySelector('link[rel="icon"]');
+              
+              if (isMobileOrSafari) {
+                faviconElement.href = '${faviconPngData}';
+              }
+            })();
+          `,
+        }}
+      />
       <div className="flex flex-col gap-20">
         <section>
           <Hero />
