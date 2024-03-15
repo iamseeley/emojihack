@@ -11,6 +11,7 @@ import { userAgent } from "next/server";
 import emojisOG from '../emojis/emojisOg.json';
 import type { Metadata } from 'next';
 import emoji from '../emojis/emojis.json'
+import Head from 'next/head';
 
 
 const faviconUrl = `data:image/svg+xml,${encodeURIComponent(
@@ -48,12 +49,24 @@ export default function Home() {
 
   return (
     <>
-    {/* <link
-        rel="icon"
-        href={faviconPngData}
-        type="image/png"
-        media="(webkit-user-agent:snapshotartist)"
-      /> */}
+    <Head>
+    <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            (function() {
+              var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+              var favicon = document.querySelector('link[rel="icon"]');
+              
+              if (isSafari) {
+                favicon.href = '${emojisOG['🛠️']}';
+              } else {
+                favicon.href = '${faviconUrl}';
+              }
+            })();
+          `,
+        }}
+      />
+      </Head>
       <div className="flex flex-col gap-20">
         <section>
           <Hero />
