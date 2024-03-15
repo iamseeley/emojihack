@@ -13,10 +13,7 @@ export const metadata: Metadata = {
 title: 'Info ~ Emoji Hack',
 description: 'Emoji Hack is a collection of software and web dev projects for every single emoji',
 icons: {
-    icon: [
-        { url: faviconUrl, type: 'image/svg+xml' },
-        { url: faviconPngData, type: 'image/png' },
-      ],
+    icon: faviconUrl,
     shortcut: faviconPngData,
     apple: faviconPngData, 
 },
@@ -70,6 +67,20 @@ openGraph: {
 export default function Info() {
     return (
         <section>
+            <script
+                dangerouslySetInnerHTML={{
+                __html: `
+                    (function() {
+                    var isMobileOrSafari = /Mobile|Safari/.test(navigator.userAgent);
+                    var faviconElement = document.querySelector('link[rel="icon"]');
+                    
+                    if (isMobileOrSafari) {
+                        faviconElement.href = '${faviconPngData}';
+                    }
+                    })();
+                `,
+                }}
+            />
             <div className="mb-8">
                 <h2 className="flex gap-2 font-semibold text-3xl mb-2">What&apos;s Emoji Hack?</h2>
             </div>

@@ -24,10 +24,7 @@ const faviconPngData = emojisOG['🛠️'];
 
 export const metadata: Metadata = {
   icons: { 
-    icon: [
-      { url: faviconUrl, type: 'image/svg+xml' },
-      { url: faviconPngData, type: 'image/png' },
-    ],
+    icon: faviconUrl,
     shortcut: faviconPngData,
     apple: faviconPngData,
   },
