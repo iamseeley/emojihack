@@ -82,7 +82,7 @@ export default function Info() {
                 }}
             />
             <div className="mb-8">
-                <h2 className="flex gap-2 font-semibold text-3xl mb-2">What&apos;s Emoji Hack?</h2>
+                <h2 className="flex gap-2 font-semibold text-3xl mb-2">What is Emoji Hack?</h2>
             </div>
             <article className="prose max-w-3xl">
             <p>Hi there, I&apos;m Thomas. I started Emoji Hack as a challenge to create a software or web dev project for every single emoji.</p>

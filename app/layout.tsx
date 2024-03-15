@@ -13,10 +13,10 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL('https://emojihack.com'),
   title: 'Emoji Hack',
-  description: 'A project for every single emoji',
+  description: 'Build something for every single emoji',
   openGraph: {
     title: 'Emoji Hack',
-    description: 'A project for every single emoji',
+    description: 'Build something for every single emoji',
     url: 'https://emojihack.com',
     siteName: 'Emoji Hack',
     locale: 'en_US',
