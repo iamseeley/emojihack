@@ -21,7 +21,8 @@ const faviconUrl = `data:image/svg+xml,${encodeURIComponent(
 const faviconPngData = emojisOG['🛠️'];
 
 export const metadata: Metadata = {
-  icons: { icon: faviconUrl,
+  icons: { 
+    icon: faviconUrl || faviconPngData,
     shortcut: faviconPngData,
     apple: faviconPngData,
   },
@@ -49,24 +50,6 @@ export default function Home() {
 
   return (
     <>
-    <Head>
-    <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            (function() {
-              var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-              var favicon = document.querySelector('link[rel="icon"]');
-              
-              if (isSafari) {
-                favicon.href = '${emojisOG['🛠️']}';
-              } else {
-                favicon.href = '${faviconUrl}';
-              }
-            })();
-          `,
-        }}
-      />
-      </Head>
       <div className="flex flex-col gap-20">
         <section>
           <Hero />

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 title: 'Info ~ Emoji Hack',
 description: 'Emoji Hack is a collection of software and web dev projects for every single emoji',
 icons: {
-    icon: faviconUrl,
+    icon: faviconUrl || faviconPngData,
     shortcut: faviconPngData,
     apple: faviconPngData, 
 },
@@ -67,12 +67,6 @@ openGraph: {
 export default function Info() {
     return (
         <section>
-            {/* <link
-                rel="icon"
-                href={faviconPngData}
-                type="image/png"
-                media="(webkit-user-agent:snapshotartist)"
-            /> */}
             <div className="mb-8">
                 <h2 className="flex gap-2 font-semibold text-3xl mb-2">What&apos;s Emoji Hack?</h2>
             </div>
