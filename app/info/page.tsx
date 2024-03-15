@@ -84,7 +84,7 @@ export default function Info() {
             <div className="mb-8">
                 <h2 className="flex gap-2 font-semibold text-3xl mb-2">What&apos;s Emoji Hack?</h2>
             </div>
-            <article className="prose">
+            <article className="prose max-w-3xl">
             <p>Hi there, I&apos;m Thomas. I started Emoji Hack as a challenge to create a software or web dev project for every single emoji.</p>
             <p>I wanted to make lots of different things and keep track of them in a fun way, so I thought, why not use emojis? Emojis are fun right?</p>
             <p>So, for every project there is an associated emoji. Sometimes an idea comes first, and then an emoji is chosen for it; other times, the emoji itself inspires the project.</p>
@@ -112,7 +112,6 @@ export default function Info() {
                 <span className="px-2 py-1 inline-flex bg-gray-100 text-sm font-medium">experimental frontend</span>
                 <span className="px-2 py-1 inline-flex bg-gray-100 text-sm font-medium">webGPU</span>
                 <span className="px-2 py-1 inline-flex bg-gray-100 text-sm font-medium">personal software tools</span>
-                <span className="px-2 py-1 inline-flex bg-gray-100 text-sm font-medium">web apps</span>
                 <span className="px-2 py-1 inline-flex bg-gray-100 text-sm font-medium">browser extensions</span>
             </div>
 
