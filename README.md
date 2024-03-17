@@ -6,7 +6,7 @@ I wanted to make lots of different things and keep track of them in a fun way, s
 
 
 
-### If you would like to participate in the Emoji Hack challenge as well follow the steps in [setup](#setup) and join the [discord](https://discord.gg/ N2QGZfbq)!
+### If you would like to participate in the Emoji Hack challenge as well, follow the steps in [setup](#setup) and join the [discord](https://discord.gg/N2QGZfbq)!
 
 
 ## Setup
