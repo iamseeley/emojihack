@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 title: 'Info ~ Emoji Hack',
 description: 'Emoji Hack is a collection of software and web dev projects for every single emoji.',
 icons: {
-    icon: faviconPngData,
+    icon: faviconUrl,
     shortcut: faviconPngData,
     apple: faviconPngData, 
 },
