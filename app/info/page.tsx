@@ -11,9 +11,9 @@ const faviconPngData = emojisOG['🛠️'];
   
 export const metadata: Metadata = {
 title: 'Info ~ Emoji Hack',
-description: 'Emoji Hack is a collection of software and web dev projects for every single emoji',
+description: 'Emoji Hack is a collection of software and web dev projects for every single emoji.',
 icons: {
-    icon: faviconUrl,
+    icon: faviconPngData,
     shortcut: faviconPngData,
     apple: faviconPngData, 
 },

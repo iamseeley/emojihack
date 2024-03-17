@@ -89,7 +89,7 @@ export async function generateMetadata({
   return {
     title,
     description,
-    icons: { icon: faviconUrl,
+    icons: { icon: faviconPngData,
       // icon: [
       //   { url: faviconSvgUrl, type: 'image/svg+xml' },
       //   { url: faviconPngData, type: 'image/png' },
