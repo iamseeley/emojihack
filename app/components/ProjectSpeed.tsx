@@ -31,7 +31,7 @@ interface ProjectSpeedProps {
             </div>
           </div>
           {/* Center Text */}
-          <div className=" text-white">
+          <div className="flex flex-col my-auto text-white">
             <div className="text-2xl font-bold text-center">{mph} MPH</div>
             <div className="text-sm font-medium text-gray-400 text-center">
               {projectsPerWeek} {projectsPerWeek === 1 ? "project" : "projects"}/week
