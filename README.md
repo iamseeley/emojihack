@@ -1,7 +1,7 @@
 
 
 <div align="center">
-  <img src="https://www.emojihack.com/opengraph-image.png" width="100px"/>
+  <img src="https://www.emojihack.com/opengraph-image.png" width="1000px"/>
 </div>
 
 # 🛠️ Emoji Hack
