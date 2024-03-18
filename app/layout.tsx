@@ -3,7 +3,7 @@ import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import type { Metadata } from "next";
-import emojisOG from '../emojis/emojisOg.json';
+
 
 
 const inter = Inter({ subsets: ["latin"] });

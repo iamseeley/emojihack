@@ -1,8 +1,8 @@
 import Link from "next/link"
-import { headers } from 'next/headers';
-import { userAgent } from "next/server";
 import emojisOG from '../../emojis/emojisOg.json';
 import type { Metadata } from 'next';
+
+
 
 const faviconUrl = `data:image/svg+xml,${encodeURIComponent(
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🛠️</text></svg>`
@@ -23,45 +23,6 @@ openGraph: {
     url: 'https://emojihack.com/info',
 },
 };
-
-// export async function generateMetadata(): Promise<Metadata> {
-//     function getIconUrl(emoji: string) {
-//       const headersObj = typeof headers === 'function' ? headers() : undefined;
-//       const { device } = headersObj
-//         ? userAgent({ headers: headersObj })
-//         : { device: { type: undefined } };
-//       const isIOSOrSafari =
-//         device.type === 'mobile' || (headersObj && headersObj.get('user-agent')?.includes('Safari'));
-    
-//       const faviconPngData = emojisOG[emoji];
-//       const faviconSvgUrl = `data:image/svg+xml,${encodeURIComponent(
-//         `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">${emoji}</text></svg>`
-//       )}`;
-    
-//       return isIOSOrSafari ? faviconPngData : faviconSvgUrl;
-//     }
-  
-  
-//     const faviconUrl = getIconUrl('🛠️');
-//     const faviconPngData = emojisOG['🛠️'];
-  
-  
-//     return {
-//     title: 'Info ~ Emoji Hack',
-//     description: 'Emoji Hack is a collection of software and web dev projects for every single emoji',
-//     icons: { icon: faviconUrl,
-//         shortcut: faviconPngData,
-//         apple: faviconPngData,
-//       },
-//     openGraph: {
-//       title: 'Info',
-//       description: 'Emoji Hack is a collection of software and web dev projects for every single emoji',
-//       url: 'https://emojihack.com/info',
-//     }, 
-//     } 
-// };
-
-
 
 
 export default function Info() {

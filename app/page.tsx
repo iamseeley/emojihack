@@ -4,14 +4,11 @@ import { getProjects } from "./utils/project";
 import ProjectStatus from "./components/ProjectsStatus";
 import Hero from "./components/Hero";
 import { ProjectSpeed } from "./components/ProjectSpeed";
-import { parseISO, differenceInCalendarWeeks, startOfWeek, isWithinInterval } from 'date-fns';
+import { parseISO, isWithinInterval } from 'date-fns';
 import ProjectsDisplay from "./components/ProjectsDisplay";
-import { headers } from 'next/headers';
-import { userAgent } from "next/server";
+
 import emojisOG from '../emojis/emojisOg.json';
 import type { Metadata } from 'next';
-import emoji from '../emojis/emojis.json'
-import Head from 'next/head';
 
 
 const faviconUrl = `data:image/svg+xml,${encodeURIComponent(
@@ -42,10 +39,17 @@ export default function Home() {
   // const associatedEmojis = Array.from(associatedEmojisSet);
   const totalEmojisCount = emojiArray.length;
   const associatedEmojisCount = Object.keys(emojiToProjectSlug).length;
-  const startDate = startOfWeek(parseISO('2024-02-25'), { weekStartsOn: 1 }); // weekStartsOn: 1 for Monday
-  const currentWeekStart = startOfWeek(new Date(), { weekStartsOn: 1 });
-  const totalWeeks = differenceInCalendarWeeks(currentWeekStart, startDate) + 1; // +1 to include the current week
-  const projectsPerWeek = Math.round(associatedEmojisCount / totalWeeks);
+
+  const currentDate = new Date();
+  const oneWeekAgo = new Date(currentDate);
+  oneWeekAgo.setDate(currentDate.getDate() - 7);
+  const projectsInLastWeek = allProjects.filter(project =>
+    isWithinInterval(parseISO(project.metadata.publishedAt), {
+      start: oneWeekAgo,
+      end: currentDate,
+    })
+  );
+  const projectsPerWeek = projectsInLastWeek.length;
 
   
 

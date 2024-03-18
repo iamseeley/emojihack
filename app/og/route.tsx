@@ -1,6 +1,5 @@
 import { ImageResponse } from 'next/og';
 import { NextRequest } from 'next/server';
-import emojis from '../../emojis/emojis.json';
 import { unstable_noStore as noStore } from 'next/cache';
 
 function formatDate(date: string) {
