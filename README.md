@@ -6,12 +6,10 @@
 
 
 <p align="left">
-    <a href="https://github.com/badges/shields/pulse" alt="Activity">
-        <img src="https://img.shields.io/github/commit-activity/w/iamseeley/emojihack" />
-    </a>
+    <a href="https://github.com/iamseeley/emojihack/commits/main/" alt="Activity">
+        <img src="https://img.shields.io/github/commit-activity/w/iamseeley/emojihack" /></a>
     <a href="https://discord.gg/6yNYj4mD9C">
-        <img src="https://img.shields.io/discord/1216060327788019883?logo=discord" alt="chat on Discord" />
-    </a>
+        <img src="https://img.shields.io/discord/1216060327788019883?logo=discord" alt="chat on Discord" /></a>
 </p>
 
 # 🛠️ Emoji Hack
