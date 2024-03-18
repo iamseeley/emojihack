@@ -4,6 +4,15 @@
   <img src="https://www.emojihack.com/opengraph-image.png" width="1000px"/>
 </div>
 
+<p align="center">
+    <a href="https://github.com/badges/shields/pulse" alt="Activity">
+        <img src="https://img.shields.io/github/commit-activity/m/badges/shields" />
+    </a>
+    <a href="https://discord.gg/6yNYj4mD9C">
+        <img src="https://img.shields.io/discord/308323056592486420?logo=discord" alt="chat on Discord" />
+    </a>
+</p>
+
 # 🛠️ Emoji Hack
 
 Hi there, I'm Thomas. I started Emoji Hack as a challenge to create a software or web dev project for every single emoji.
