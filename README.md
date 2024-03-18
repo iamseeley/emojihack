@@ -1,3 +1,9 @@
+
+
+<div align="center">
+  <img src="https://www.emojihack.com/opengraph-image.png" width="100px"/>
+</div>
+
 # 🛠️ Emoji Hack
 
 Hi there, I'm Thomas. I started Emoji Hack as a challenge to create a software or web dev project for every single emoji.
