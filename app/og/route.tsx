@@ -103,7 +103,7 @@ export async function GET(req: NextRequest) {
         
         
         <div style={{
-          fontSize: '104px',
+          fontSize: '114px',
           fontWeight: 'bold',
         }}>
           {projectTitle}
@@ -111,14 +111,14 @@ export async function GET(req: NextRequest) {
         
         </div>
         <div style={{
-          fontSize: '54px',
+          fontSize: '74px',
         }}>
           {formattedDate}
         </div>
         <div
         style={{
           marginTop: '60px',
-          fontSize: '54px',
+          fontSize: '64px',
           backgroundColor: '#2563eb',
           paddingTop: '10px',
           paddingBottom: '10px',
