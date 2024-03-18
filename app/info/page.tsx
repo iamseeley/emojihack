@@ -87,7 +87,7 @@ export default function Info() {
             <article className="prose max-w-3xl">
             <p>Hi there, I&apos;m Thomas. I started Emoji Hack as a challenge to create a software or web dev project for every single emoji.</p>
             <p>I wanted to make lots of different things and keep track of them in a fun way, so I thought, why not use emojis? Emojis are fun right?</p>
-            <p>So, for every project there is an associated emoji. Sometimes an idea comes first, and then an emoji is chosen for it; other times, the emoji itself inspires the project.</p>
+            <p>So, for every project I make there is an associated emoji. Sometimes an idea comes first, and then I choose an emoji for it; other times, the emoji itself inspires the project.</p>
             <p>There will be a tag on each project indicating whether the idea or the emoji came first.</p>
             
 
