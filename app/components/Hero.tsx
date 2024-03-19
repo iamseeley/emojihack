@@ -6,7 +6,7 @@ export default function Hero() {
         <>
             <div className="flex flex-col  text-center items-center">
                 <div className="flex flex-col gap-2 max-w-lg">
-                    <p className="text-lg md:text-xl text-gray-600">Instead of getting an internship <br className="sm:hidden" /> {emojihack.____will} will</p>
+                    
                     <h2 className='text-4xl md:text-5xl font-bold'>Build something for every emoji</h2>
                     
                 </div>

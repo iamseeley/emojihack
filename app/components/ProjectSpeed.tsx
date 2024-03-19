@@ -11,7 +11,7 @@ interface ProjectSpeedProps {
     const rotationDegree = Math.min(mph, 200) / 200 * 180 - 90;
   
     return (
-      <div className="bg-black p-5 w-1/2 rounded-3xl shadow-md flex flex-col  gap-4 items-center">
+      <div className="bg-[#111213] p-5 w-1/2 rounded-3xl shadow-md flex flex-col  gap-4 items-center">
         <div className="relative w-28 h-14 ">
           {/* Speedometer ring */}
           
