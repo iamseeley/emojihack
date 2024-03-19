@@ -1,8 +1,8 @@
 
 
-<div align="center">
+<!-- <div align="center">
   <img src="https://www.emojihack.com/opengraph-image.png" width="1000px"/>
-</div>
+</div> -->
 
 
 <p align="left">
