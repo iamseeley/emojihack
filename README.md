@@ -8,11 +8,14 @@
 <p align="left">
     <a href="https://github.com/iamseeley/emojihack/commits/main/" alt="Activity">
         <img src="https://img.shields.io/github/commit-activity/w/iamseeley/emojihack" /></a>
-    <a href="https://discord.gg/6yNYj4mD9C">
-        <img src="https://img.shields.io/discord/1216060327788019883?logo=discord" alt="chat on Discord" /></a>
+    <!-- <a href="https://discord.gg/6yNYj4mD9C">
+        <img src="https://img.shields.io/discord/1216060327788019883?logo=discord" alt="chat on Discord" /></a> -->
 </p>
 
 # 🛠️ Emoji Hack
+
+>[!IMPORTANT]
+> I'm currently not adding projects to emoji hack. You can keep up with my work at [tseeley.com](https://tseeley.com).
 
 Hi there, I'm Thomas. I started Emoji Hack as a challenge to create a software or web dev project for every single emoji.
 
@@ -20,7 +23,7 @@ I wanted to make lots of different things and keep track of them in a fun way, s
 
 
 
-### If you would like to participate in the Emoji Hack challenge as well, follow the steps in [setup](#setup), and join the [discord](https://discord.gg/6yNYj4mD9C)!
+### If you would like to participate in the Emoji Hack challenge as well, follow the steps in [setup](#setup)!
 
 
 ## Setup
